@@ -80,11 +80,7 @@ This increases estimated individual-asset risk while preserving the estimated cr
 
 ### Risk calibration
 
-Risk comparability is important here!
-
-Using the same ex-ante volatility ceiling across methods doesn't guarantee that the resulting portfolios actually take the same predicted risk. A robust optimizer may naturally sit well below the ceiling.
-
-So we run two kinds of comparisons:
+Risk comparability is important here! Using the same ex-ante volatility ceiling across methods doesn't guarantee that the resulting portfolios actually take the same predicted risk. A robust optimizer may naturally sit well below the ceiling. So we run two kinds of comparisons:
 
 1. portfolios solved under the same ex-ante volatility ceiling
 2. portfolios calibrated toward the same predicted volatility target
@@ -95,10 +91,7 @@ If a robust formulation can’t reach the target risk, we mark the comparison as
 
 We use adjusted returns for a balanced panel of 147 ETFs.
 
-The universe is survivor-conditioned. It was built from funds with sufficient current and historical data, rather than from a point-in-time historical ETF universe.
-
-Because the universe is survivor-conditioned, results apply to this fixed ETF panel rather than a fully reconstructed historical universe.
-Signals use only returns available before each quarterly decision date.
+The universe is survivor-conditioned. It was built from funds with sufficient current and historical data, rather than from a point-in-time historical ETF universe. Because the universe is survivor-conditioned, results apply to this fixed ETF panel rather than a fully reconstructed historical universe. Signals use only returns available before each quarterly decision date.
 
 At each rebalance:
 
@@ -122,21 +115,11 @@ Note that the cost levels are scenario assumptions rather than historical ETF-sp
 
 ## Backtesting
 
-The backtester is self-financing.
-
-Between quarterly rebalances, weights drift with realized returns. At the next rebalance, we compare those drifted holdings with the new target portfolio to calculate turnover and transaction costs.
-
-This fixes one of the main issues in the original class project, where returns were effectively computed as if target weights reset every day while turnover was only charged quarterly.
+The backtester is self-financing. Between quarterly rebalances, weights drift with realized returns. At the next rebalance, we compare those drifted holdings with the new target portfolio to calculate turnover and transaction costs. This fixes one of the main issues in the original class project, where returns were effectively computed as if target weights reset every day while turnover was only charged quarterly.
 
 ## Perturbation experiments
 
-A central question in the project is how sensitive optimized portfolios are to small changes in estimated inputs.
-
-To test that, we generate shared perturbations of expected returns and covariance estimates and then resolve each method under the same perturbed inputs.
-
-This lets us compare how much the resulting portfolio weights move under nominal and robust optimization.
-
-Across these perturbations, robust methods are substantially more stable than nominal MVO.
+A central question in the project is how sensitive optimized portfolios are to small changes in estimated inputs. To test that, we generate shared perturbations of expected returns and covariance estimates and then resolve each method under the same perturbed inputs. This lets us compare how much the resulting portfolio weights move under nominal and robust optimization. Across these perturbations, robust methods are substantially more stable than nominal MVO.
 
 ## ETF redundancy
 
@@ -151,11 +134,7 @@ This lets us test whether instability comes from estimation error itself or from
 
 ## Statistical inference
 
-Because portfolio returns are serially dependent, we don't treat daily observations as independent.
-
-We use stationary bootstrap inference to account for serial dependence in returns.
-
-We also keep the stability experiments separate from the return comparisons. Weight stability and realized performance are evaluated separately.
+Because portfolio returns are serially dependent, we don't treat daily observations as independent. We use stationary bootstrap inference to account for serial dependence in returns. We also keep the stability experiments separate from the return comparisons. Weight stability and realized performance are evaluated separately.
 
 ## Installation
 
