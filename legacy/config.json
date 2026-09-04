@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "experiment_id": "cs361_historical_baseline",
+  "result_label": "LEGACY",
+  "purpose": "Exact preservation of the historically submitted CS361 implementation, including known scientific defects. This configuration is not a corrected research protocol.",
+  "data": {
+    "download_provider": "yfinance",
+    "requested_start_date": "2015-01-01",
+    "requested_end_date_exclusive": "2025-12-31",
+    "cached_raw_price_start_date": "2015-01-02",
+    "cached_raw_price_end_date": "2025-12-30",
+    "clean_price_start_date": "2015-01-02",
+    "clean_price_end_date": "2025-12-30",
+    "clean_return_start_date": "2015-01-05",
+    "clean_return_end_date": "2025-12-30",
+    "price_field_preference": [
+      "Adj Close",
+      "Close"
+    ],
+    "yfinance_auto_adjust": false,
+    "yfinance_threads": true,
+    "max_missing_fraction": 0.1,
+    "forward_fill_limit_days": 5,
+    "remaining_missing_row_policy": "drop any row containing any missing price",
+    "return_definition": "simple close-to-close pct_change with fill_method=None",
+    "current_universe_panel": true,
+    "point_in_time_universe": false,
+    "survivorship_bias_free": false,
+    "requested_ticker_count": 148,
+    "retained_ticker_count": 147,
+    "dropped_tickers": [
+      "JO"
+    ],
+    "requested_tickers": [
+      "ACWI", "AGG", "BIV", "BND", "BNO", "BSV", "CORN", "CWB", "DBA", "DBC", "DGRO", "DIA", "DVY", "EEM", "EEMV", "EFA", "EFAV", "EMB", "EPI", "EWA", "EWC", "EWD", "EWG", "EWH", "EWI", "EWJ", "EWK", "EWL", "EWN", "EWO", "EWP", "EWQ", "EWS", "EWT", "EWU", "EWW", "EWZ", "EZA", "FXI", "GLD", "GOVT", "GSG", "HDV", "HYG", "IAU", "ICF", "IEF", "IEFA", "IEI", "IEMG", "IGSB", "IJH", "IJR", "INDA", "ITOT", "IUSG", "IUSV", "IVV", "IWD", "IWF", "IWM", "IWN", "IWO", "IYR", "JNK", "JO", "KBE", "KRE", "KWEB", "LQD", "MDY", "MTUM", "MUB", "PDBC", "PFF", "QQQ", "QUAL", "REM", "RPG", "RPV", "RSP", "RWR", "RWX", "SCHA", "SCHB", "SCHD", "SCHE", "SCHH", "SCHR", "SCHX", "SCHZ", "SDY", "SGOL", "SHY", "SIZE", "SJNK", "SLV", "SMH", "SOXX", "SPLV", "SPY", "STIP", "THD", "TIP", "TLH", "TLT", "TUR", "UNG", "USMV", "USO", "VB", "VCIT", "VCSH", "VEA", "VEU", "VGIT", "VGLT", "VIG", "VLUE", "VNQ", "VNQI", "VO", "VOO", "VOOG", "VOOV", "VT", "VTI", "VTV", "VUG", "VV", "VWO", "VXUS", "VYM", "WEAT", "XBI", "XHB", "XLB", "XLE", "XLF", "XLI", "XLK", "XLP", "XLU", "XLV", "XLY", "XME", "XOP", "XRT"
+    ],
+    "retained_tickers": [
+      "ACWI", "AGG", "BIV", "BND", "BNO", "BSV", "CORN", "CWB", "DBA", "DBC", "DGRO", "DIA", "DVY", "EEM", "EEMV", "EFA", "EFAV", "EMB", "EPI", "EWA", "EWC", "EWD", "EWG", "EWH", "EWI", "EWJ", "EWK", "EWL", "EWN", "EWO", "EWP", "EWQ", "EWS", "EWT", "EWU", "EWW", "EWZ", "EZA", "FXI", "GLD", "GOVT", "GSG", "HDV", "HYG", "IAU", "ICF", "IEF", "IEFA", "IEI", "IEMG", "IGSB", "IJH", "IJR", "INDA", "ITOT", "IUSG", "IUSV", "IVV", "IWD", "IWF", "IWM", "IWN", "IWO", "IYR", "JNK", "KBE", "KRE", "KWEB", "LQD", "MDY", "MTUM", "MUB", "PDBC", "PFF", "QQQ", "QUAL", "REM", "RPG", "RPV", "RSP", "RWR", "RWX", "SCHA", "SCHB", "SCHD", "SCHE", "SCHH", "SCHR", "SCHX", "SCHZ", "SDY", "SGOL", "SHY", "SIZE", "SJNK", "SLV", "SMH", "SOXX", "SPLV", "SPY", "STIP", "THD", "TIP", "TLH", "TLT", "TUR", "UNG", "USMV", "USO", "VB", "VCIT", "VCSH", "VEA", "VEU", "VGIT", "VGLT", "VIG", "VLUE", "VNQ", "VNQI", "VO", "VOO", "VOOG", "VOOV", "VT", "VTI", "VTV", "VUG", "VV", "VWO", "VXUS", "VYM", "WEAT", "XBI", "XHB", "XLB", "XLE", "XLF", "XLI", "XLK", "XLP", "XLU", "XLV", "XLY", "XME", "XOP", "XRT"
+    ]
+  },
+  "walk_forward": {
+    "training_window_trading_days": 504,
+    "rebalance_frequency": "quarterly",
+    "rebalance_date_rule": "first observed trading day of each calendar quarter after row_position >= 504",
+    "first_rebalance_date": "2017-04-03",
+    "last_rebalance_date": "2025-10-01",
+    "rebalance_count": 35,
+    "training_rows": "returns strictly before rebalance_date, tail(504)",
+    "holding_rows": "returns on or after rebalance_date and before next rebalance_date; last period runs through cached end",
+    "signal_execution_convention": "undefined in the historical implementation",
+    "initial_portfolio_value": 1.0
+  },
+  "estimation": {
+    "annualization_factor": 252,
+    "expected_return": "arithmetic mean of 504 daily simple returns multiplied by 252",
+    "mu_hat_formula": "mu_hat_i = 252 * mean(r_i)",
+    "standard_error": "daily sample standard deviation with ddof=1 divided by sqrt(T), then multiplied by 252 and clipped below at 1e-8",
+    "standard_error_formula": "s_i = max(252 * std_ddof1(r_i) / sqrt(T), 1e-8)",
+    "classical_covariance": {
+      "method": "single IEWMA",
+      "volatility_half_life": 21,
+      "correlation_half_life": 63
+    },
+    "robust_covariance": {
+      "method": "CM-IEWMA",
+      "expert_half_life_pairs": [
+        [10, 21],
+        [21, 63],
+        [63, 125]
+      ],
+      "expert_score_lookback_days": 21,
+      "softmax_temperature": 1.0,
+      "expert_scoring": "in-sample: final covariance from each expert is scored on the final 21 returns already used to build it",
+      "gaussian_score_ridge": 1e-8
+    },
+    "iewma_forgetting_factor_formula": "beta = 2 ** (-1 / half_life)",
+    "iewma_initial_variance": "first squared return",
+    "iewma_initial_standardized_outer_product": "first standardized return outer product",
+    "standardized_return_winsorization": 4.2,
+    "iewma_variance_floor": 1e-14,
+    "covariance_annualization": "daily covariance forecast multiplied by 252",
+    "covariance_symmetrization": true,
+    "statistics_covariance_diagonal_ridge": 1e-6,
+    "nearest_psd_minimum_eigenvalue": 1e-8,
+    "missing_window_columns": "drop any asset column containing any missing value"
+  },
+  "optimization": {
+    "long_only": true,
+    "fully_invested": true,
+    "maximum_weight": 0.1,
+    "objective_scaling": "mu^T w - gamma * w^T Sigma w (no one-half factor)",
+    "gamma_classical": 5.0,
+    "gamma_robust": 20.0,
+    "rho": 0.25,
+    "kappa": 0.2,
+    "robust_mean": "mu_hat - rho * s",
+    "robust_covariance_adjustment": "Sigma_robust = Sigma_CM_IEWMA + kappa * diag(diag(Sigma_CM_IEWMA))",
+    "robust_covariance_diagonal_note": "The 1e-6 statistics ridge is already present in Sigma before the diagonal is multiplied by kappa.",
+    "solver_order": [
+      "OSQP",
+      "CLARABEL",
+      "SCS"
+    ],
+    "accepted_solver_statuses": [
+      "optimal",
+      "optimal_inaccurate"
+    ],
+    "solver_verbose": false,
+    "solver_specific_options": {},
+    "solver_failure_fallback": "equal weight",
+    "postsolve_cleanup": {
+      "replace_infinite_and_nan_with": 0.0,
+      "clip_lower": 0.0,
+      "clip_upper": 0.1,
+      "normalize_to_one": true,
+      "cap_redistribution_iterations": 20,
+      "cap_tolerance": 1e-10,
+      "nonpositive_total_fallback": "equal weight"
+    }
+  },
+  "hyperparameter_selection": {
+    "scope": "full backtest period; scientifically invalid but preserved",
+    "ranking": [
+      "sharpe_ratio descending",
+      "annualized_return descending"
+    ],
+    "classical_gamma_grid": [3.0, 5.0, 7.5, 10.0, 15.0, 20.0],
+    "robust_gamma_grid": [5.0, 10.0, 15.0, 20.0, 30.0],
+    "robust_rho_grid": [0.25, 0.5, 0.75, 1.0, 1.5],
+    "robust_kappa_grid": [0.05, 0.1, 0.15, 0.2],
+    "selected_classical_gamma": 5.0,
+    "selected_robust_gamma": 20.0,
+    "selected_rho": 0.25,
+    "selected_kappa": 0.2
+  },
+  "accounting": {
+    "reported_daily_returns": "For every day in a quarter, sum_i target_weight_i_at_quarter_start * asset_return_i_day. This is daily constant-target-weight accounting.",
+    "reported_portfolio_values": "cumprod(1 + reported_daily_return) from initial value 1.0",
+    "turnover_pretrade_weights": "Quarter-end weights obtained by drifting the quarter-start target through cumulative asset returns",
+    "turnover_formula": "0.5 * sum_i abs(new_target_i - prior_quarter_drifted_weight_i)",
+    "initial_allocation_turnover": "omitted (NaN)",
+    "transaction_costs": "none",
+    "accounting_contradiction_preserved": true
+  },
+  "metrics": {
+    "cumulative_return": "product(1 + daily_return) - 1",
+    "annualized_return": "product(1 + daily_return) ** (252 / number_of_daily_rows) - 1",
+    "annualized_volatility": "sample standard deviation of daily returns with ddof=1 times sqrt(252)",
+    "reported_sharpe": "annualized_return / annualized_volatility; zero risk-free rate; not sqrt(252) times mean excess return over daily volatility",
+    "risk_free_rate": 0.0,
+    "maximum_drawdown": "minimum(portfolio_value / cumulative_max(portfolio_value) - 1)",
+    "reported_average_quarterly_turnover": "mean of non-NaN one-way quarterly turnover values",
+    "final_portfolio_value": "last reported portfolio value"
+  },
+  "entry_point_defaults": {
+    "src/main.py": {
+      "downloads_or_recleans_data": true,
+      "gamma_classical": 5.0,
+      "gamma_robust": 20.0,
+      "rho": 0.25,
+      "kappa": 0.2,
+      "maximum_weight": 0.1
+    },
+    "src/backtest.py": {
+      "downloads_or_recleans_data": false,
+      "gamma_classical": 10.0,
+      "gamma_robust": 10.0,
+      "rho": 1.0,
+      "kappa": 0.1,
+      "maximum_weight": 0.1
+    },
+    "legacy_canonical_reproduction": {
+      "downloads_or_recleans_data": false,
+      "gamma_classical": 5.0,
+      "gamma_robust": 20.0,
+      "rho": 0.25,
+      "kappa": 0.2,
+      "maximum_weight": 0.1
+    }
+  },
+  "reporting": {
+    "plot_backend": "Agg",
+    "plot_dpi": 200,
+    "robust_heatmap_top_n_by_average_weight": 25,
+    "historical_output_directory": "outputs",
+    "canonical_reproduction_output_directory": "artifacts/legacy_cs361/reproduced"
+  },
+  "known_scientific_defects": [
+    "Daily constant-target-weight return accounting contradicts quarterly buy-and-hold drift used for turnover.",
+    "The ETF panel is fixed using full-period availability and missingness and is not point-in-time or survivorship-bias-free.",
+    "Nominal and robust strategies use different covariance estimators (single IEWMA versus CM-IEWMA).",
+    "Nominal and robust strategies use different risk-aversion coefficients (5 versus 20).",
+    "Hyperparameters were selected using the full period later reported as out-of-sample performance.",
+    "CM-IEWMA expert weights use in-sample scoring on observations already used to form each final expert covariance.",
+    "The reported Sharpe ratio is CAGR divided by annualized volatility with a zero risk-free rate.",
+    "No transaction costs, taxes, spreads, slippage, or market impact are applied.",
+    "The signal and execution convention is undefined; rebalance-date returns are applied to weights estimated from data strictly before that date."
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "artifact_locations": {
+    "all_recorded_failures": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/all_recorded_failures.csv",
+    "clone_diagnostics": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/clone_diagnostics.csv",
+    "clustering_date_diagnostics": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/clustering_date_diagnostics.csv",
+    "common_risk_ceiling_diagnostics": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/common_risk_ceiling_diagnostics.csv",
+    "covariance_forecast_periods": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/covariance_forecast_periods.csv",
+    "deflated_sharpe_diagnostics": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/deflated_sharpe_diagnostics.csv",
+    "direct_robustness_observations": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/direct_robustness_observations.csv",
+    "experiment_manifest": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/experiment_manifest.json",
+    "figure_01_net_cumulative_wealth": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_01_net_cumulative_wealth.png",
+    "figure_02_drawdowns": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_02_drawdowns.png",
+    "figure_03_common_ceiling_realized_frontier": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_03_common_ceiling_realized_frontier.png",
+    "figure_04_requested_vs_attained_risk": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_04_requested_vs_attained_risk.png",
+    "figure_05_predicted_vs_realized_volatility": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_05_predicted_vs_realized_volatility.png",
+    "figure_06_covariance_forecast_loss": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_06_covariance_forecast_loss.png",
+    "figure_07_turnover_vs_net_performance": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_07_turnover_vs_net_performance.png",
+    "figure_08_bootstrap_weight_sensitivity": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_08_bootstrap_weight_sensitivity.png",
+    "figure_09_clone_distortion": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_09_clone_distortion.png",
+    "figure_10_clustering_conditioning": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_10_clustering_conditioning.png",
+    "figure_11_clustering_turnover": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_11_clustering_turnover.png",
+    "figure_12_regime_performance": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_12_regime_performance.png",
+    "figure_13_rho_kappa_sensitivity": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/figure_13_rho_kappa_sensitivity.png",
+    "headline_net_returns": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/headline_net_returns.csv",
+    "inference_intervals": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/inference_intervals.csv",
+    "joint_stationary_bootstrap_indices": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/joint_stationary_bootstrap_indices.npz",
+    "overlapping_risk_comparison": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/overlapping_risk_comparison.csv",
+    "paired_inference_differences": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/paired_inference_differences.csv",
+    "core_strategy_metrics": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/core_strategy_metrics.csv",
+    "regime_asset_class_exposures": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/regime_asset_class_exposures.csv",
+    "regime_definitions": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/regime_definitions.csv",
+    "regime_period_diagnostics": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/regime_period_diagnostics.csv",
+    "regime_summary": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/regime_summary.csv",
+    "sensitivity_diagnostics": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/sensitivity_diagnostics.csv",
+    "table_1_forecasting": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/table_1_forecasting.csv",
+    "table_2_headline_strategies": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/table_2_headline_strategies.csv",
+    "table_3_robustness_diagnostics": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/table_3_robustness_diagnostics.csv",
+    "table_4_redundancy_ablation": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/table_4_redundancy_ablation.csv",
+    "target_attainment_diagnostics": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/target_attainment_diagnostics.csv",
+    "target_attainment_performance": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/target_attainment_performance.csv"
+  },
+  "artifact_sha256": {
+    "all_recorded_failures": "3676af5465865500ee8eaff026124bded5738685a51d2b745c9171ec277d530c",
+    "clone_diagnostics": "05393948c445625480a79782d0188ab28a5ca5651c9c5e9024bff5555b1d86ea",
+    "clustering_date_diagnostics": "dfeec0fb3c8ad0ef8d5502a1333555f6b4a930be591401084c8452f2c58d1746",
+    "common_risk_ceiling_diagnostics": "b861a565c0efa7cae454ae3f2b2c92ab47120c992657e285002bf023104f613e",
+    "covariance_forecast_periods": "20b81734515fb67d97cd8d2f65884f488eca3f55aab68c1fe8a97994e7346aa4",
+    "deflated_sharpe_diagnostics": "f436a0b69714b729cddfae64fa1b7a34d510a771cfba47dc56c0df504961b6ec",
+    "direct_robustness_observations": "d3ac8b7d2c431fc50c842f2ded0e5cff7ce5825bf81c34084840f5ed517febc2",
+    "experiment_manifest": "2b04a29094952db83616dc865a9f27653ba4139723970e1484085cb574a97a6e",
+    "figure_01_net_cumulative_wealth": "7ccd5d8bd4fd7e801625e8ea69674cfcc643b32bfa697099d704034e5c5b5f31",
+    "figure_02_drawdowns": "384c3402aeec484e8b9e28960318d3cb7618341a5da7c49f8df0c0dacac120af",
+    "figure_03_common_ceiling_realized_frontier": "b2aa2a9be5ad2896c2c4280077b44bf1b56c69ed70884404ec3dcf997b223415",
+    "figure_04_requested_vs_attained_risk": "cf98836a589adaea65b91c4de11e90f082753ea616fd366c4c3cbc7909f6b0f6",
+    "figure_05_predicted_vs_realized_volatility": "ddeed809e713751b1e650fee9c0ca3257d485ca0c0824de89ff5549d0fce363a",
+    "figure_06_covariance_forecast_loss": "3ee8556cd2d6c2cf528edee0fdbb922e31c3442fcb47abecb45186339415d75a",
+    "figure_07_turnover_vs_net_performance": "06b1bcc9fd41eb3284f0f005aacaa5e3a329edd3988a4596b740b7d65d6479f1",
+    "figure_08_bootstrap_weight_sensitivity": "d34bf2973b9985ea7b606ad1bfaa01aaab6dd98df3d039bd3ecc82da1087237c",
+    "figure_09_clone_distortion": "26225ed51d8ae2ed40e74620b4e44c43a362d99a57ecbc1726766decd2b076b9",
+    "figure_10_clustering_conditioning": "f68228200499a60aefb16dc906d3408c6f1b7c368b302db0ab31e0e046c76c9d",
+    "figure_11_clustering_turnover": "32aed7192f5452613c5b2de41fb7b9c23103e6623b87886d78fd89edccff6fcb",
+    "figure_12_regime_performance": "9db63f0c11271c024fef34ab7846ac39fba361fe8776daf2ea27c252e12d1b45",
+    "figure_13_rho_kappa_sensitivity": "b83e0bc8d675445362a3468eae9b4146f0d8581ab393d883815084d4ee2a5ec9",
+    "headline_net_returns": "cd914b1f65cb92c547c28d0ade919ef041526c5ad5e9f289987d2c1a2b22ac6c",
+    "inference_intervals": "4ff2c8f0582c4ba410e07b5ea17a25f0bb32cc7c0f13d8b32a10ac6b5d0d4af1",
+    "joint_stationary_bootstrap_indices": "84e3ea5b5a5d34010f3566c4dd1819a457033a7d2e94258117fee98db656af32",
+    "overlapping_risk_comparison": "d7920ac277d10dac9be84e68991d5c584f5092531f16b1bcad80684fd6047e95",
+    "paired_inference_differences": "aa6883a5ccd61cfd8e0baba155272d52318febaf5b36f0db9e8a407fced04d1d",
+    "core_strategy_metrics": "1c34327cd424609b570c8cbf12848062cb4d89994102b63b488915bf7ad805f8",
+    "regime_asset_class_exposures": "69706dae58f4ed078252fa1f174bd9408d3880aef387c6d5f389ecfea0d1b1a3",
+    "regime_definitions": "04ecf6a45c3db00ddc0dc5800130e24acd528ab977e3ba84a0cdd24bd051f916",
+    "regime_period_diagnostics": "c2a89096c5ef00ef784cefcc9acb604148832dc93e0e35e5e7a6ec1857e6d004",
+    "regime_summary": "db9adabdd7fbe1e49d15e796455df0276db8b2dcb0a5662d760b89328fde11a4",
+    "sensitivity_diagnostics": "4f03ae80067f7d45874186a78435da319934f41664fd13b35d17c344d64695f3",
+    "table_1_forecasting": "8cbd4ac4c47dd3ddb86df5c67833182f1ecf7d744eaa3c10a2b4a4c27270f4c8",
+    "table_2_headline_strategies": "61882a48d84333f2ff280bfa971330cb73d4e0998b7df08f2872e676612ef4d9",
+    "table_3_robustness_diagnostics": "e099c7e332f2be8ca27acd34fa5b24a622c47eb52ed74c345f5c62912f30aed9",
+    "table_4_redundancy_ablation": "bb0063398c1f098631801d9f3691d7f1639d06f7c9e980596ec1ce5993b3f8a4",
+    "target_attainment_diagnostics": "42446f7c46f62b1a4ce571db70bce651727ed52bcc69d3e26a8b6b53f5b4df5b",
+    "target_attainment_performance": "6fb77df5269e35f584f8ee54631ccbdbaf3133803ea3cc9e70d84719e142a311"
+  },
+  "configuration": {
+    "canonical_sha256": "c2eca8321e4605ea093774d102c938c0834a5467d97389287c0ad53014335717",
+    "path": "/Users/kovidcapildeo/robust-portfolio-research/configs/final_analysis.json"
+  },
+  "counts": {
+    "clone_completed": 96,
+    "clustering_completed_date_models": 620,
+    "direct_robustness_completed": 464,
+    "dsr_candidates": 27,
+    "explicit_failed_solves": 18,
+    "inference_replications": 2000,
+    "outer_decisions": 31
+  },
+  "environment": {
+    "cvxpy_installed_solvers": [
+      "CLARABEL",
+      "OSQP",
+      "SCIPY",
+      "SCS"
+    ],
+    "dependency_versions": {
+      "clarabel": "0.11.1",
+      "cvxpy": "1.7.3",
+      "matplotlib": "3.10.7",
+      "numpy": "2.3.3",
+      "osqp": "1.1.1",
+      "pandas": "3.0.3",
+      "scipy": "1.17.1",
+      "scs": "3.2.11",
+      "yfinance": "1.3.0"
+    },
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "python_implementation": "CPython",
+    "python_version": "3.13.7"
+  },
+  "git": {
+    "commit": "360d97beedb3ecfbefd00cf42be13a061ab33f16",
+    "dirty": false,
+    "status": []
+  },
+  "inputs": {
+    "core_config": {
+      "path": "/Users/kovidcapildeo/robust-portfolio-research/configs/core_experiment.json",
+      "sha256": "595a23f4f390059a91b1b6e3680bd26f39bab801ab06776e8b7bfb014c0604ee"
+    },
+    "rebalance_dates": {
+      "path": "/Users/kovidcapildeo/robust-portfolio-research/data/quarterly_rebalance_dates.csv",
+      "sha256": "289df3fea89585e637d1cee77dfa8e0a56dda055300a624e92d5e7285be5ffec"
+    },
+    "returns": {
+      "path": "/Users/kovidcapildeo/robust-portfolio-research/data/returns_clean.csv",
+      "sha256": "a8da7491e7a720fc8e911de65424bc4e720ffcc99e735be1a3e0532340f1a40a"
+    },
+    "universe_metadata": {
+      "path": "/Users/kovidcapildeo/robust-portfolio-research/data/universe_metadata.csv",
+      "sha256": "69d34a0880dd0a7b86dcfa7720550770c972dbbc279ba8a1d1a2fdfef0a07ed8"
+    }
+  },
+  "limitations": [
+    "The public ETF panel is survivor-conditioned and is not survivorship-bias-free.",
+    "Historical inactive/dead funds, terminal returns, and point-in-time classifications are unavailable.",
+    "Execution is a close-t approximation after the return ending at t.",
+    "Cash earns zero and Sharpe statistics are explicitly zero-RF/provisional because no validated full-period risk-free series is available.",
+    "Transaction-cost rates are scenarios, not historical ETF-specific execution-cost estimates.",
+    "The historical evaluation period was observed during prior project development and is not an untouched holdout.",
+    "Static asset-class labels are not point-in-time classifications.",
+    "Direct perturbation diagnostics use four representative rebalance dates for computational tractability.",
+    "Synthetic clones are controlled diagnostic assets and are not presented as tradable historical ETFs.",
+    "Deflated Sharpe Ratio is a secondary diagnostic whose trial-independence and return-distribution assumptions are imperfect here."
+  ],
+  "core_source": {
+    "artifact_directory": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/core_experiment/d77e27a202a4",
+    "artifact_sha256": {
+      "covariance_estimator_diagnostics.csv": "021b37bfe6bc87a5dc0caece8899c070c617ce01740ae922042803970b6fb0e9",
+      "covariance_forecast_periods.csv": "53081c0c36d13a59dca66153bea73e27ec123c384a84484a0eac60d8ffcfd816",
+      "experiment_manifest.json": "84dcabb94379fbcd6cd066880d59761f45593244da412337852284f961847c9b",
+      "figure_1_gross_vs_net_wealth.png": "2aa8f6ea58e1df46442b259cbed7b31537c9595aa419cfb91f2db7c78858cbca",
+      "figure_2_realized_risk_return.png": "8274681cf92afe7567493f9d391a68c521b7b2a543fc1fc287445024f5a1aa66",
+      "figure_3_predicted_vs_realized_volatility.png": "5d2feb9025e9ae5d9f0ac82f0c70024c67f1140154fbfa98bee9001eab6d005e",
+      "figure_4_covariance_forecast_loss.png": "80ebef590134ce324874f99ea703a9cb519ae69dba2f847dd0940b2189a8abce",
+      "figure_5_turnover_cost_drag.png": "cdc610c5cb5e0506e20df5554930d423db156c421dd9375e7f459e0095f8c53a",
+      "headline_daily_wealth.csv": "fae0069dd9f6d57e1c2f662a7137c2ecc738653baac46e9fe73595e5091fece0",
+      "infeasible_variants.csv": "aaced6f974562a55e2405865ee6db271c4f18ffc85c25e11240c53bf2dc26170",
+      "inner_folds.json": "d60faf879cce3f28d8f338fbcf1ecf028867454615565fefbd5cd43e681fccee",
+      "mean_forecast_diagnostics.csv": "71e0a7296ec6fb3de18152bde0aa0e243c3a4af7c5547986a5be18483a4cdcf4",
+      "run_manifest.json": "be0498caa8444535d7661128bc6e0bea6bba83f44df7b4b90664ddd166984ee5",
+      "solver_diagnostics.csv": "63636dc9fed3f81e6cf3eda479553b367a53c45323acffac7ec5ed113626d336",
+      "table_1_covariance_estimator_study.csv": "f266a775e7b09b8cfa00e1206cc0be8f50e81bcc102c0993098902b1bb0e4400",
+      "table_2_core_strategy_comparison.csv": "a857b98091afa6390e9a96da79ceac24e49d53d95aa641aa9270c580309ba274",
+      "target_weights.csv": "d14f1cbe4621801db471f9ac8ac7f13eae455f9233ef9d7823ea4667030c191d",
+      "uncertainty_calibrations.csv": "f7421c5d7fc3b4228ee314fe635954fe95e387c3a7b23fa4d277decc22451201",
+      "universe_snapshots.json": "f4be40013da296f38a60dc099a20aa4ed60d354b311df40297e65f456479549e"
+    },
+    "commit": "b446d70fff2cca23947b790115d5610fcc4382d9",
+    "configuration_sha256": "d77e27a202a47c5bcc1e0100581ea668c22cb4dc9d5a7ab542f75ac35345af39",
+    "manifest_sha256": "be0498caa8444535d7661128bc6e0bea6bba83f44df7b4b90664ddd166984ee5"
+  },
+  "protocol": {
+    "clone_experiment": {
+      "relative_noise_standard_deviations": [
+        0.0,
+        0.01,
+        0.05
+      ],
+      "seed": 92001,
+      "selected_outer_dates": [
+        "2018-04-02",
+        "2020-04-01",
+        "2022-10-03",
+        "2025-10-01"
+      ],
+      "source_assets": [
+        "SPY",
+        "AGG"
+      ]
+    },
+    "clustering": {
+      "cluster_exposure_control": "NOT_IMPLEMENTED_OPTIONAL",
+      "correlation_thresholds": [
+        0.8,
+        0.9,
+        0.95,
+        0.975
+      ],
+      "distance": "sqrt((1-rho)/2)",
+      "linkage": "average",
+      "medoid_rule": "minimum average within-cluster distance; lexicographic tie-break",
+      "models": [
+        "gmv",
+        "nominal",
+        "box",
+        "box_diagonal",
+        "ellipsoid"
+      ],
+      "uncertainty_rule": "reuse each date's full-universe training-only calibrated radius and subset its uncertainty geometry to medoids"
+    },
+    "comparison": {
+      "headline_cost_bps": 5.0,
+      "headline_strategies": [
+        "etf_equal_weight",
+        "asset_class_equal_weight",
+        "inverse_volatility_iewma",
+        "gmv_iewma",
+        "nominal_risk_10pct",
+        "box_risk_10pct",
+        "box_diagonal_risk_10pct",
+        "ellipsoid_risk_10pct"
+      ],
+      "headline_target_annual_volatility": 0.1,
+      "principal_optimized_models": [
+        "nominal",
+        "box",
+        "box_diagonal",
+        "ellipsoid"
+      ]
+    },
+    "direct_robustness": {
+      "block_length_observations": 21,
+      "bootstrap_method": "circular_moving_block",
+      "bootstrap_replications": 24,
+      "covariance_shocks": {
+        "correlation_to_identity_weight": 0.1,
+        "leading_eigenvalue_scale": 1.1,
+        "variance_scale": 1.1
+      },
+      "mean_standard_error_shocks": [
+        -1.0,
+        1.0
+      ],
+      "seed": 91001,
+      "selected_outer_dates": [
+        "2018-04-02",
+        "2020-04-01",
+        "2022-10-03",
+        "2025-10-01"
+      ]
+    },
+    "experiment": {
+      "name": "final_analysis_research_experiment",
+      "core_commit": "b446d70fff2cca23947b790115d5610fcc4382d9",
+      "core_config_sha256": "d77e27a202a47c5bcc1e0100581ea668c22cb4dc9d5a7ab542f75ac35345af39",
+      "research_status": "NESTED PSEUDO-OUT-OF-SAMPLE; NOT AN UNTOUCHED HOLDOUT",
+      "result_label": "FINAL SURVIVOR-CONDITIONED PUBLIC-DATA EXPERIMENT"
+    },
+    "inference": {
+      "annualization_factor": 252,
+      "certainty_equivalent_risk_aversion": 3.0,
+      "confidence_level": 0.95,
+      "dsr_candidate_set": "all complete core experiment strategy specifications at the fixed 5 bp scenario",
+      "expected_block_length": 10.0,
+      "method": "joint_stationary_bootstrap",
+      "multiple_testing_safeguard": "deflated_sharpe_ratio",
+      "replications": 2000,
+      "risk_free_treatment": "ZERO_RF_PROVISIONAL",
+      "seed": 36129,
+      "sharpe_difference_method": "paired joint stationary-bootstrap percentile interval"
+    },
+    "inputs": {
+      "core_artifact_directory": "artifacts/core_experiment/d77e27a202a4",
+      "core_config": "configs/core_experiment.json",
+      "rebalance_dates_path": "data/quarterly_rebalance_dates.csv",
+      "returns_path": "data/returns_clean.csv",
+      "universe_metadata_path": "data/universe_metadata.csv"
+    },
+    "limitations": [
+      "The public ETF panel is survivor-conditioned and is not survivorship-bias-free.",
+      "Historical inactive/dead funds, terminal returns, and point-in-time classifications are unavailable.",
+      "Execution is a close-t approximation after the return ending at t.",
+      "Cash earns zero and Sharpe statistics are explicitly zero-RF/provisional because no validated full-period risk-free series is available.",
+      "Transaction-cost rates are scenarios, not historical ETF-specific execution-cost estimates.",
+      "The historical evaluation period was observed during prior project development and is not an untouched holdout.",
+      "Static asset-class labels are not point-in-time classifications.",
+      "Direct perturbation diagnostics use four representative rebalance dates for computational tractability.",
+      "Synthetic clones are controlled diagnostic assets and are not presented as tradable historical ETFs.",
+      "Deflated Sharpe Ratio is a secondary diagnostic whose trial-independence and return-distribution assumptions are imperfect here."
+    ],
+    "outputs": {
+      "default_root": "artifacts/final_analysis",
+      "figure_count": 13
+    },
+    "regimes": {
+      "annualization_factor": 252,
+      "labels": {
+        "negative_high": "stress/risk-off",
+        "negative_low": "weak/cooling",
+        "positive_high": "volatile risk-on",
+        "positive_low": "calm risk-on"
+      },
+      "market_proxy": "SPY",
+      "trend_lookback_observations": 252,
+      "volatility_lookback_observations": 63,
+      "volatility_threshold": "expanding median of completed trailing-volatility estimates strictly before the rebalance"
+    },
+    "risk_attainment": {
+      "initial_upper_risk_aversion": 1.0,
+      "maximum_bisection_iterations": 40,
+      "maximum_risk_aversion": 100000000.0,
+      "targets": [
+        0.1
+      ],
+      "volatility_tolerance": 0.0002
+    },
+    "schema_version": 3,
+    "sensitivity": {
+      "estimation_window": "NOT_RUN_REQUIRES_NESTED_HISTORY_REDESIGN",
+      "kappa_multipliers": [
+        0.0,
+        0.5,
+        1.0,
+        1.5
+      ],
+      "maximum_weights": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "rho_multipliers": [
+        0.0,
+        0.5,
+        1.0,
+        1.5
+      ]
+    }
+  },
+  "research_status": "NESTED PSEUDO-OUT-OF-SAMPLE; NOT AN UNTOUCHED HOLDOUT",
+  "result_label": "FINAL SURVIVOR-CONDITIONED PUBLIC-DATA EXPERIMENT",
+  "run_timestamp_utc": "2026-09-02T17:04:04.067883+00:00",
+  "schema_version": 3
+}

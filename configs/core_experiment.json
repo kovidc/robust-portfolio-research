@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "experiment": {
+    "name": "core_quantitative_experiment",
+    "result_label": "SURVIVOR-CONDITIONED PUBLIC-DATA EXPERIMENT",
+    "research_status": "NESTED PSEUDO-OUT-OF-SAMPLE; NOT AN UNTOUCHED HOLDOUT"
+  },
+  "data": {
+    "returns_path": "data/returns_clean.csv",
+    "rebalance_dates_path": "data/quarterly_rebalance_dates.csv",
+    "universe_metadata_path": "data/universe_metadata.csv",
+    "universe_mode": "SURVIVOR_PANEL",
+    "survivor_conditioned": true,
+    "survivorship_bias_free": false
+  },
+  "clock": {
+    "execution_convention": "CLOSE_T_AFTER_RETURN",
+    "return_index_semantics": "row t is the close t-1 to close t return",
+    "forecast_information": "returns strictly before t",
+    "execution": "close t after old holdings earn row t",
+    "first_new_weight_return": "first return row strictly after t"
+  },
+  "walkforward": {
+    "estimation_window_observations": 504,
+    "minimum_prior_inner_folds": 4,
+    "formal_outer_start_date": "2018-04-02",
+    "outer_start_rule": "first scheduled date after four complete quarterly pseudo-OOS validation folds, each with a 504-observation fit window",
+    "rebalance_frequency": "fixed quarterly schedule"
+  },
+  "annualization": {
+    "trading_days": 252,
+    "mean": "daily arithmetic estimate multiplied by 252",
+    "covariance": "daily covariance estimate multiplied by 252",
+    "cash_daily_return": 0.0,
+    "risk_free_series": null
+  },
+  "universe": {
+    "required_history_observations": 504,
+    "require_complete_required_window": true,
+    "asset_class_source": "static asset_class column in data/universe_metadata.csv"
+  },
+  "constraints": {
+    "fully_invested": true,
+    "long_only": true,
+    "maximum_weight": 0.10,
+    "weight_tolerance": 0.0000005
+  },
+  "means": {
+    "implemented": ["sample", "ewma", "shrink_zero", "shrink_grand_mean"],
+    "headline": "sample",
+    "ewma_half_life": 63,
+    "shrinkage_intensity": 0.50
+  },
+  "covariances": {
+    "implemented": ["sample", "ewma", "iewma", "ledoit_wolf"],
+    "headline": "iewma",
+    "ewma_half_life": 63,
+    "iewma_volatility_half_life": 21,
+    "iewma_correlation_half_life": 63,
+    "iewma_winsorize_clip": 4.2,
+    "iewma_variance_floor": 1e-14,
+    "iewma_initial_variance": "first squared return, floored",
+    "iewma_initial_standardized_second_moment": "identity matrix",
+    "ledoit_wolf_target": "scaled identity",
+    "ledoit_wolf_empirical_covariance_normalization": "divide by T after demeaning",
+    "absolute_eigenvalue_floor": 1e-10,
+    "relative_eigenvalue_floor": 1e-8,
+    "legacy_cm_iewma_in_headline": false,
+    "nonlinear_shrinkage": "NOT_IMPLEMENTED_OPTIONAL"
+  },
+  "uncertainty": {
+    "bootstrap_method": "circular_moving_block",
+    "bootstrap_seed": 361,
+    "bootstrap_replications": 500,
+    "block_length_observations": 21,
+    "coverage_probability": 0.95,
+    "standard_error_floor": 1e-10,
+    "mean_uncertainty_relative_eigenvalue_floor": 1e-6,
+    "mean_uncertainty_absolute_eigenvalue_floor": 1e-10,
+    "box_rho_rule": "empirical coverage quantile of max absolute standardized bootstrap mean error",
+    "ellipsoid_rho_rule": "square root of empirical coverage quantile of regularized Mahalanobis bootstrap mean error",
+    "kappa_rule": "empirical coverage quantile of maximum positive relative bootstrap IEWMA diagonal error"
+  },
+  "risk_matching": {
+    "target_annual_volatility": [0.06, 0.08, 0.10, 0.12, 0.14],
+    "headline_target_annual_volatility": 0.10,
+    "definition": "common numerical annualized volatility upper bound",
+    "target_binding_tolerance": 0.0002,
+    "base_risk_for_nominal_box_ellipsoid": "headline IEWMA covariance",
+    "risk_for_diagonal_robust": "headline IEWMA covariance plus calibrated kappa times its diagonal",
+    "report_common_base_risk_for_all": true
+  },
+  "costs": {
+    "model": "LINEAR_SCENARIOS",
+    "basis_points_per_dollar_traded": [0, 1, 5, 10, 25],
+    "headline_basis_points": 5,
+    "cash_trade_cost": 0.0,
+    "interpretation": "scenarios, not historical ETF-specific execution-cost estimates",
+    "turnover_regularization": "NOT_INCLUDED"
+  },
+  "optimization": {
+    "solver_order_quadratic": ["CLARABEL", "OSQP", "SCS"],
+    "solver_order_conic": ["CLARABEL", "SCS"],
+    "allow_optimal_inaccurate": false,
+    "feasibility_tolerance": 0.0000005,
+    "psd_tolerance": 1e-9,
+    "risk_parity_objective_tolerance": 1e-10,
+    "silent_fallback": false
+  },
+  "outputs": {
+    "default_root": "artifacts/core_experiment",
+    "tables": ["covariance_estimator_study", "core_strategy_comparison"],
+    "figures": ["gross_vs_net_wealth", "realized_risk_return", "predicted_vs_realized_volatility", "covariance_forecast_loss", "turnover_cost_drag"]
+  },
+  "limitations": [
+    "The public ETF panel is survivor-conditioned and is not survivorship-bias-free.",
+    "Historical inactive/dead funds and terminal returns are unavailable.",
+    "Execution is a close-t approximation after the return ending at t.",
+    "Cash earns zero because no validated time-aligned risk-free series is stored.",
+    "Transaction-cost rates are scenarios, not empirically estimated ETF-specific costs.",
+    "The historical period was already observed during earlier project development.",
+    "Final statistical performance inference is reported separately in the final analysis.",
+    "Static asset-class labels are not point-in-time classifications."
+  ]
+}

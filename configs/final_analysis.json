@@ -1,0 +1,115 @@
+{
+  "schema_version": 3,
+  "experiment": {
+    "name": "final_analysis_research_experiment",
+    "result_label": "FINAL SURVIVOR-CONDITIONED PUBLIC-DATA EXPERIMENT",
+    "research_status": "NESTED PSEUDO-OUT-OF-SAMPLE; NOT AN UNTOUCHED HOLDOUT",
+    "core_commit": "b446d70fff2cca23947b790115d5610fcc4382d9",
+    "core_config_sha256": "d77e27a202a47c5bcc1e0100581ea668c22cb4dc9d5a7ab542f75ac35345af39"
+  },
+  "inputs": {
+    "core_artifact_directory": "artifacts/core_experiment/d77e27a202a4",
+    "core_config": "configs/core_experiment.json",
+    "returns_path": "data/returns_clean.csv",
+    "rebalance_dates_path": "data/quarterly_rebalance_dates.csv",
+    "universe_metadata_path": "data/universe_metadata.csv"
+  },
+  "comparison": {
+    "headline_cost_bps": 5.0,
+    "headline_target_annual_volatility": 0.10,
+    "headline_strategies": [
+      "etf_equal_weight",
+      "asset_class_equal_weight",
+      "inverse_volatility_iewma",
+      "gmv_iewma",
+      "nominal_risk_10pct",
+      "box_risk_10pct",
+      "box_diagonal_risk_10pct",
+      "ellipsoid_risk_10pct"
+    ],
+    "principal_optimized_models": ["nominal", "box", "box_diagonal", "ellipsoid"]
+  },
+  "risk_attainment": {
+    "targets": [0.10],
+    "volatility_tolerance": 0.0002,
+    "initial_upper_risk_aversion": 1.0,
+    "maximum_risk_aversion": 100000000.0,
+    "maximum_bisection_iterations": 40
+  },
+  "direct_robustness": {
+    "selected_outer_dates": ["2018-04-02", "2020-04-01", "2022-10-03", "2025-10-01"],
+    "bootstrap_method": "circular_moving_block",
+    "bootstrap_replications": 24,
+    "block_length_observations": 21,
+    "seed": 91001,
+    "mean_standard_error_shocks": [-1.0, 1.0],
+    "covariance_shocks": {
+      "variance_scale": 1.10,
+      "correlation_to_identity_weight": 0.10,
+      "leading_eigenvalue_scale": 1.10
+    }
+  },
+  "clone_experiment": {
+    "selected_outer_dates": ["2018-04-02", "2020-04-01", "2022-10-03", "2025-10-01"],
+    "source_assets": ["SPY", "AGG"],
+    "relative_noise_standard_deviations": [0.0, 0.01, 0.05],
+    "seed": 92001
+  },
+  "clustering": {
+    "correlation_thresholds": [0.80, 0.90, 0.95, 0.975],
+    "distance": "sqrt((1-rho)/2)",
+    "linkage": "average",
+    "medoid_rule": "minimum average within-cluster distance; lexicographic tie-break",
+    "uncertainty_rule": "reuse each date's full-universe training-only calibrated radius and subset its uncertainty geometry to medoids",
+    "cluster_exposure_control": "NOT_IMPLEMENTED_OPTIONAL",
+    "models": ["gmv", "nominal", "box", "box_diagonal", "ellipsoid"]
+  },
+  "regimes": {
+    "market_proxy": "SPY",
+    "trend_lookback_observations": 252,
+    "volatility_lookback_observations": 63,
+    "volatility_threshold": "expanding median of completed trailing-volatility estimates strictly before the rebalance",
+    "annualization_factor": 252,
+    "labels": {
+      "positive_low": "calm risk-on",
+      "positive_high": "volatile risk-on",
+      "negative_low": "weak/cooling",
+      "negative_high": "stress/risk-off"
+    }
+  },
+  "inference": {
+    "method": "joint_stationary_bootstrap",
+    "replications": 2000,
+    "expected_block_length": 10.0,
+    "seed": 36129,
+    "confidence_level": 0.95,
+    "annualization_factor": 252,
+    "risk_free_treatment": "ZERO_RF_PROVISIONAL",
+    "certainty_equivalent_risk_aversion": 3.0,
+    "sharpe_difference_method": "paired joint stationary-bootstrap percentile interval",
+    "multiple_testing_safeguard": "deflated_sharpe_ratio",
+    "dsr_candidate_set": "all complete core experiment strategy specifications at the fixed 5 bp scenario"
+  },
+  "sensitivity": {
+    "rho_multipliers": [0.0, 0.5, 1.0, 1.5],
+    "kappa_multipliers": [0.0, 0.5, 1.0, 1.5],
+    "maximum_weights": [0.05, 0.10, 0.20],
+    "estimation_window": "NOT_RUN_REQUIRES_NESTED_HISTORY_REDESIGN"
+  },
+  "outputs": {
+    "default_root": "artifacts/final_analysis",
+    "figure_count": 13
+  },
+  "limitations": [
+    "The public ETF panel is survivor-conditioned and is not survivorship-bias-free.",
+    "Historical inactive/dead funds, terminal returns, and point-in-time classifications are unavailable.",
+    "Execution is a close-t approximation after the return ending at t.",
+    "Cash earns zero and Sharpe statistics are explicitly zero-RF/provisional because no validated full-period risk-free series is available.",
+    "Transaction-cost rates are scenarios, not historical ETF-specific execution-cost estimates.",
+    "The historical evaluation period was observed during prior project development and is not an untouched holdout.",
+    "Static asset-class labels are not point-in-time classifications.",
+    "Direct perturbation diagnostics use four representative rebalance dates for computational tractability.",
+    "Synthetic clones are controlled diagnostic assets and are not presented as tradable historical ETFs.",
+    "Deflated Sharpe Ratio is a secondary diagnostic whose trial-independence and return-distribution assumptions are imperfect here."
+  ]
+}

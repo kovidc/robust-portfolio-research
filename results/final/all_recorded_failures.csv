@@ -1,0 +1,19 @@
+experiment,decision_date,threshold,model,status,error,strategy
+cluster_medoid,2020-04-01,0.8,nominal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.10506162.,
+cluster_medoid,2020-04-01,0.8,box,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.10506162.,
+cluster_medoid,2020-04-01,0.8,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.12777310.,
+cluster_medoid,2020-04-01,0.8,ellipsoid,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.10506162.,
+cluster_medoid,2020-04-01,0.9,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.10131915.,
+cluster_medoid,2021-01-04,0.8,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.10730516.,
+cluster_medoid,2021-04-01,0.8,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.12751584.,
+cluster_medoid,2021-07-01,0.8,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.12589558.,
+cluster_medoid,2021-10-01,0.8,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.13955480.,
+cluster_medoid,2021-10-01,0.9,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.10591224.,
+cluster_medoid,2022-01-03,0.8,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.10970120.,
+cluster_medoid,2022-10-03,0.8,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.11493274.,
+cluster_medoid,2023-01-03,0.8,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.11078101.,
+cluster_medoid,2023-04-03,0.8,box_diagonal,FAILED_EXPLICITLY,Target volatility 0.10000000 is below feasible minimum 0.10047493.,
+core_common_risk_ceiling,,,,FAILED_EXPLICITLY,2020-04-01:Target volatility 0.06000000 is below feasible minimum 0.06805291.,box_diagonal_risk_06pct
+core_common_risk_ceiling,,,,FAILED_EXPLICITLY,2021-07-01:Target volatility 0.06000000 is below feasible minimum 0.06060312.,box_diagonal_risk_06pct
+core_common_risk_ceiling,,,,FAILED_EXPLICITLY,2021-10-01:Target volatility 0.06000000 is below feasible minimum 0.06611300.,box_diagonal_risk_06pct
+core_common_risk_ceiling,,,,FAILED_EXPLICITLY,2022-10-03:Target volatility 0.06000000 is below feasible minimum 0.06039449.,box_diagonal_risk_06pct
