@@ -31,7 +31,7 @@ See the [research report](docs/FINAL_RESEARCH_REPORT.md) for the full formulatio
 
 All optimized portfolios are fully invested, long-only, and capped at 10% per asset:
 
-$$\mathcal{W}=\{w:\mathbf{1}^{\top}w=1,\ 0\leq w_i\leq0.10\}$$
+$$\mathcal{W}=\left\{\,w:\mathbf{1}^{\top}w=1,\ 0\leq w_i\leq0.10\,\right\}$$
 
 Nominal MVO maximizes $\hat{\mu}^{\top}w$ under a predicted-risk ceiling. Box robustness subtracts $\rho_{\mathrm{box}}\lVert Sw\rVert_1$, where $S=\mathrm{diag}(s)$ and $s$ contains bootstrap standard errors of annualized mean returns. Ellipsoidal robustness subtracts $\rho_{\mathrm{ell}}\sqrt{w^{\top}C_\mu w}$, allowing correlated mean-estimation errors. The box-plus-diagonal model also uses $\hat{\Sigma}+\kappa\,\mathrm{diag}(\mathrm{diag}(\hat{\Sigma}))$ in its risk constraint.
 
