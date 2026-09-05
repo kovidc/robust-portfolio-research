@@ -65,7 +65,8 @@ MPLCONFIGDIR=/tmp/robust_portfolio_mpl venv/bin/python -m unittest discover -s t
 - `configs/`: experiment settings, seeds, solver choices, and cost scenarios.
 - `data/`: stored prices, returns, ETF metadata, and rebalance dates. `src/download_data.py` records the data-preparation procedure; downloading again may change the historical data.
 - `src/robust_portfolio/`: estimators, optimizers, accounting, experiments, inference, and reporting.
-- `scripts/` and `tests/`: experiment entry points and verification.
+- `scripts/`: entry points for the core experiment and final analysis.
+- `tests/`: test suites listed under Reproduction.
 - `results/final/`: reported tables, figures, and the original run manifest.
 - `docs/FINAL_RESEARCH_REPORT.md`: detailed methods and results.
 
