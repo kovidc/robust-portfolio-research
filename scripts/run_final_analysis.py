@@ -4,16 +4,15 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 import sys
-
+from pathlib import Path
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 PACKAGE_ROOT = REPOSITORY_ROOT / "src"
 if str(PACKAGE_ROOT) not in sys.path:
     sys.path.insert(0, str(PACKAGE_ROOT))
 
-from robust_portfolio.research.final_analysis import run_final_analysis  # noqa: E402
+from robust_portfolio.research.final_analysis import run_final_analysis
 
 
 def main() -> None:

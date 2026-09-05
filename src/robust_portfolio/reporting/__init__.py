@@ -1,4 +1,4 @@
-"""Artifact and provenance reporting for research runs."""
+"""Tables, figures, and run manifests for portfolio experiments."""
 
 from .manifests import build_run_manifest, write_manifest
 

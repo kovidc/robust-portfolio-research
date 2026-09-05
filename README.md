@@ -1,204 +1,74 @@
-# Robust Markowitz Portfolio Research
+# Robust Portfolio Optimization
 
-This project asks a simple question: does robust portfolio optimization actually make portfolio decisions less sensitive to estimation error?
+This project studies when robust mean-variance optimization changes portfolio decisions in useful ways. It compares nominal MVO, box and ellipsoidal mean uncertainty, and diagonal covariance uncertainty on historical adjusted returns for 147 ETFs, with quarterly rebalancing. The self-financing backtest lets holdings drift between trades and charges linear transaction costs of 0–25 bp per dollar traded.
 
-We compare standard mean-variance optimization with several uncertainty-aware variants on a universe of 147 ETFs. The results are mixed: robust methods make portfolio weights much more stable under perturbations in expected returns and covariance estimates, but they don't consistently outperform nominal MVO on realized returns.
+On four prespecified perturbation dates, allocations from robust objectives were substantially less sensitive to resampled inputs than nominal MVO. This did not translate into consistent realized-return outperformance. ETF equal weight had the highest net CAGR among the eight headline strategies; ellipsoidal robustness had the highest zero-risk-free Sharpe, at much lower attained risk.
 
-This repository started as a CS361 class project. We kept the original version for reference in `legacy/`, then rebuilt it with correct portfolio accounting, better controls, and more careful comparisons.
+## Results
 
-## Main takeaway
+The evaluation runs from April 2, 2018 through December 30, 2025, with 31 quarterly decisions. At 5 bp per dollar traded:
 
-Across our perturbation experiments, robust formulations reduced input-to-weight sensitivity substantially relative to nominal MVO.
+| Strategy | Net CAGR | Realized volatility | Sharpe (zero RF) | Recurring one-way turnover |
+|---|---:|---:|---:|---:|
+| ETF equal weight | 9.16% | 14.32% | 0.684 | 2.69% |
+| Asset-class equal weight | 8.72% | 14.00% | 0.668 | 2.73% |
+| Inverse volatility (IEWMA) | 5.77% | 9.37% | 0.646 | 7.78% |
+| GMV (IEWMA) | 1.88% | 3.40% | 0.564 | 14.46% |
+| Nominal MVO, 10% ceiling | 1.34% | 16.00% | 0.164 | 47.48% |
+| Box robust, 10% ceiling | 0.26% | 7.61% | 0.072 | 24.89% |
+| Box + diagonal, 10% ceiling | 0.99% | 6.21% | 0.190 | 22.90% |
+| Ellipsoidal, 10% ceiling | 2.83% | 3.58% | 0.798 | 13.81% |
 
-The return results are more mixed. Once we account for estimation error, transaction costs, and risk calibration, we don't find strong evidence that robust optimization generally beats nominal MVO or simple diversification out of sample.
+CAGR compounds daily net returns and annualizes using 252 observations per year. Sharpe divides the annualized arithmetic daily mean by annualized daily volatility, assuming a zero risk-free rate. Turnover is the average half-L1 change from drifted pre-trade weights to target weights, excluding initial formation; costs also include initial formation.
 
-## What's in this repository
+The 10% predicted-volatility ceiling was binding on all 31 nominal decisions, but on only 6 box decisions and 14 box-plus-diagonal decisions; it was never binding for the ellipsoidal model. In the separate risk-aversion calibration, the robust optima were often already below the requested target. There was no common attained risk across all four model families in the tested grids, so these results do not support an all-model equal-risk performance ranking.
 
-The rebuilt research pipeline adds:
+Mean L1 weight sensitivity on the four perturbation dates was 1.156 for nominal MVO, 0.649 for box, 0.552 for box plus diagonal covariance, and 0.174 for ellipsoidal robustness. Each date used 24 shared block-bootstrap training samples with the date's uncertainty geometry held fixed. Synthetic ETF clones and correlation clustering provide separate checks on exposure redundancy.
 
-- self-financing portfolio accounting
-- drifted pre-trade weights and explicit turnover
-- transaction-cost scenarios
-- as-of return and covariance estimates
-- robust expected-return and covariance formulations
-- risk-attainment checks
-- bootstrap perturbation experiments
-- synthetic ETF-clone experiments
-- clustering and redundancy tests
-- dependence-aware statistical inference
-- reproducible tables and figures
+See the [research report](docs/FINAL_RESEARCH_REPORT.md) for formulations, forecasting comparisons, paired bootstrap intervals, and limitations. The [committed tables and figures](results/final/) contain the full reported results.
 
-The original class-project version is preserved in `legacy/`. The current research code lives under `src/robust_portfolio/`.
+## Method
 
-## Portfolio models
+All optimized portfolios are fully invested, long-only, and capped at 10% per asset:
 
-All optimized portfolios are:
+$$\mathcal{W}=\{w:\mathbf{1}^{\top}w=1,\ 0\leq w_i\leq0.10\}$$
 
-- fully invested
-- long-only
-- capped at 10% per asset
+Nominal MVO maximizes $\hat{\mu}^{\top}w$ under a predicted-risk ceiling. Box robustness subtracts $\rho_{\mathrm{box}}\|Sw\|_1$, where $S$ contains bootstrap standard errors. Ellipsoidal robustness subtracts $\rho_{\mathrm{ell}}\sqrt{w^{\top}C_\mu w}$, allowing correlated mean-estimation errors. The box-plus-diagonal model also uses $\hat{\Sigma}+\kappa\,\mathrm{diag}(\mathrm{diag}(\hat{\Sigma}))$ in its risk constraint.
 
-In other words, weights sum to 1 and each asset weight satisfies `0 <= w_i <= 0.10`.
+The main estimates use the preceding 504 daily returns: an arithmetic sample mean and IEWMA covariance with 21-day volatility and 63-day correlation half-lives. Uncertainty parameters are calibrated from that training window. Sample, EWMA, and Ledoit–Wolf covariance estimates are also evaluated; Ledoit–Wolf had the lowest mean covariance forecast loss in this sample.
 
-### Nominal mean-variance optimization
+Forecasts use rows strictly before each decision date. Existing holdings earn the return ending on that date, targets execute at that close, and new holdings first earn the following return. Transaction costs are deducted from NAV using actual risky-asset dollar trades.
 
-The nominal optimizer uses the estimated return vector and covariance matrix directly. Under a fixed risk constraint, it chooses weights to maximize:
+## Reproduction
 
-```text
-mu_hat^T w
-```
-
-### Robust expected returns
-
-We test two ways of handling uncertainty in expected returns.
-
-**Box uncertainty** uses:
-
-```text
-mu_hat^T w - rho * ||S w||_1
-```
-
-Because the portfolios are long-only, this acts like shrinking estimated returns according to their uncertainty.
-
-**Ellipsoidal uncertainty** uses:
-
-```text
-mu_hat^T w - rho * sqrt(w^T C_mu w)
-```
-
-This lets uncertainty in return estimates be correlated across assets.
-
-### Covariance robustness
-
-We also test a more conservative covariance estimate:
-
-```text
-Sigma_rob = Sigma_hat + kappa * diag(diag(Sigma_hat))
-```
-
-This increases estimated individual-asset risk while preserving the estimated cross-asset covariance structure.
-
-### Risk calibration
-
-Risk comparability is important here! Using the same ex-ante volatility ceiling across methods doesn't guarantee that the resulting portfolios actually take the same predicted risk. A robust optimizer may naturally sit well below the ceiling. So we run two kinds of comparisons:
-
-1. portfolios solved under the same ex-ante volatility ceiling
-2. portfolios calibrated toward the same predicted volatility target
-
-If a robust formulation can’t reach the target risk, we mark the comparison as unattainable.
-
-## Data
-
-We use adjusted returns for a balanced panel of 147 ETFs.
-
-The universe is survivor-conditioned. It was built from funds with sufficient current and historical data, rather than from a point-in-time historical ETF universe. Because the universe is survivor-conditioned, results apply to this fixed ETF panel rather than a fully reconstructed historical universe. Signals use only returns available before each quarterly decision date.
-
-At each rebalance:
-
-- existing holdings earn the return ending on the decision date
-- targets execute at that close
-- new weights first earn the following return
-
-Turnover is computed from drifted pre-trade weights rather than assuming weights stay fixed between rebalances.
-
-## Transaction costs
-
-We test linear transaction-cost scenarios of:
-
-- 0 bp
-- 1 bp
-- 5 bp
-- 10 bp
-- 25 bp
-
-Note that the cost levels are scenario assumptions rather than historical ETF-specific estimates.
-
-## Backtesting
-
-The backtester is self-financing. Between quarterly rebalances, weights drift with realized returns. At the next rebalance, we compare those drifted holdings with the new target portfolio to calculate turnover and transaction costs. This fixes one of the main issues in the original class project, where returns were effectively computed as if target weights reset every day while turnover was only charged quarterly.
-
-## Perturbation experiments
-
-A central question in the project is how sensitive optimized portfolios are to small changes in estimated inputs. To test that, we generate shared perturbations of expected returns and covariance estimates and then resolve each method under the same perturbed inputs. This lets us compare how much the resulting portfolio weights move under nominal and robust optimization. Across these perturbations, robust methods are substantially more stable than nominal MVO.
-
-## ETF redundancy
-
-ETF universes often contain funds with very similar exposures. That can make optimization unstable because small changes in inputs may cause the optimizer to jump between near-substitutes.
-
-We study that in two ways:
-
-- clustering ETFs using only information available before each evaluation period
-- creating synthetic ETF clones to test near-redundancy directly
-
-This lets us test whether instability comes from estimation error itself or from choosing between near-duplicate ETFs.
-
-## Statistical inference
-
-Because portfolio returns are serially dependent, we don't treat daily observations as independent. We use stationary bootstrap inference to account for serial dependence in returns. We also keep the stability experiments separate from the return comparisons. Weight stability and realized performance are evaluated separately.
-
-## Installation
-
-Python 3.13 was used for the final experiments.
-
-From the repository root:
+The recorded experiments used Python 3.13.7. From the repository root:
 
 ```bash
 python3 -m venv venv
 venv/bin/pip install -r requirements.txt
-```
-
-## Reproducing the experiments
-
-To reproduce the original CS361 baseline:
-
-```bash
-venv/bin/python scripts/reproduce_legacy.py
-```
-
-To run the rebuilt research pipeline:
-
-```bash
 MPLCONFIGDIR=/tmp/robust_portfolio_mpl venv/bin/python scripts/run_core_experiment.py
 MPLCONFIGDIR=/tmp/robust_portfolio_mpl venv/bin/python scripts/run_final_analysis.py
 ```
 
-## Tests
+Both commands use the stored CSV data and write to configuration-hash directories under `artifacts/`. Run the core experiment first; the final analysis reads its outputs. The committed `results/final/` snapshot is separate from generated runs.
 
-The repository includes tests for the legacy reproduction, the research foundation, the optimization experiments, and the final analysis.
+The tests use Python's standard-library `unittest`; the final-analysis suite requires the core outputs above:
 
 ```bash
-venv/bin/python -m unittest discover -s tests/legacy -p 'test_*.py' -v
 venv/bin/python -m unittest discover -s tests/research_foundation -p 'test_*.py' -v
 venv/bin/python -m unittest discover -s tests/core_experiment -p 'test_*.py' -v
 MPLCONFIGDIR=/tmp/robust_portfolio_mpl venv/bin/python -m unittest discover -s tests/final_analysis -p 'test_*.py' -v
 ```
 
-## Repository structure
+## Repository
 
-```text
-legacy/                            original CS361 experiment
-src/robust_portfolio/data/         data handling and as-of universe construction
-src/robust_portfolio/estimators/   return, covariance, and uncertainty estimates
-src/robust_portfolio/optimizers/   nominal and robust portfolio optimizers
-src/robust_portfolio/backtest/     holdings, rebalancing, turnover, and costs
-src/robust_portfolio/calibration/  risk calibration
-src/robust_portfolio/research/     experiments and diagnostics
-src/robust_portfolio/inference/    bootstrap and statistical inference
-src/robust_portfolio/reporting/    metrics, tables, and figures
-tests/                             test suites
-docs/                              detailed methods, report, and limitations
-```
-
-For the full methodology and results, see [`docs/FINAL_RESEARCH_REPORT.md`](docs/FINAL_RESEARCH_REPORT.md).
+- `configs/`: experiment settings, seeds, solver choices, and cost scenarios.
+- `data/`: stored prices, returns, ETF metadata, and rebalance dates. `src/download_data.py` records the data-preparation procedure; downloading again may change the historical data.
+- `src/robust_portfolio/`: estimators, optimizers, accounting, experiments, inference, and reporting.
+- `scripts/` and `tests/`: experiment entry points and verification.
+- `results/final/`: reported tables, figures, and the original run manifest.
+- `docs/FINAL_RESEARCH_REPORT.md`: detailed methods and results.
 
 ## Limitations
 
-The main limitations are:
-
-- The ETF universe is survivor-conditioned rather than point-in-time.
-- We don't have historical data for funds that disappeared from the current universe.
-- Transaction costs are scenario assumptions rather than ETF-specific historical estimates.
-- The historical evaluation period was used during project development, so it shouldn't be treated as a completely untouched final holdout.
-- We don't have a validated full-period risk-free series, so Sharpe comparisons under a zero risk-free assumption should be interpreted cautiously.
-
-Overall, robust optimization substantially reduced sensitivity to estimation error, but did not consistently improve realized returns.
+The ETF panel is survivor-conditioned, with static asset-class labels and no inactive-fund history. The evaluation period was observed during project development, so there is no untouched holdout. Same-close execution is an approximation, and transaction-cost rates are scenarios rather than estimated historical ETF execution costs. Cash earns zero and Sharpe uses zero RF because a validated full-period risk-free series is unavailable. The direct sensitivity and clone experiments cover four selected dates, and the optimized strategies attain different risks.

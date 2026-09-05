@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import hashlib
 import json
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -15,7 +15,7 @@ class FinalAnalysisConfig:
     payload: dict[str, Any]
 
     @classmethod
-    def load(cls, path: Path | str) -> "FinalAnalysisConfig":
+    def load(cls, path: Path | str) -> FinalAnalysisConfig:
         resolved = Path(path).resolve()
         payload = json.loads(resolved.read_text(encoding="utf-8"))
         cls._validate(payload)

@@ -40,27 +40,27 @@
     "target_attainment_performance": "/Users/kovidcapildeo/robust-portfolio-research/artifacts/final_analysis/c2eca8321e46/target_attainment_performance.csv"
   },
   "artifact_sha256": {
-    "all_recorded_failures": "3676af5465865500ee8eaff026124bded5738685a51d2b745c9171ec277d530c",
+    "all_recorded_failures": "6b5af05958d6a7c736847b13146788b42ef948b37149cf56e772daffa2348eed",
     "clone_diagnostics": "05393948c445625480a79782d0188ab28a5ca5651c9c5e9024bff5555b1d86ea",
     "clustering_date_diagnostics": "dfeec0fb3c8ad0ef8d5502a1333555f6b4a930be591401084c8452f2c58d1746",
     "common_risk_ceiling_diagnostics": "b861a565c0efa7cae454ae3f2b2c92ab47120c992657e285002bf023104f613e",
     "covariance_forecast_periods": "20b81734515fb67d97cd8d2f65884f488eca3f55aab68c1fe8a97994e7346aa4",
-    "deflated_sharpe_diagnostics": "f436a0b69714b729cddfae64fa1b7a34d510a771cfba47dc56c0df504961b6ec",
+    "deflated_sharpe_diagnostics": "61b5aab4735a285ab5d54f51b805fd24abd49a454a56449fbf8778715b548905",
     "direct_robustness_observations": "d3ac8b7d2c431fc50c842f2ded0e5cff7ce5825bf81c34084840f5ed517febc2",
     "experiment_manifest": "2b04a29094952db83616dc865a9f27653ba4139723970e1484085cb574a97a6e",
     "figure_01_net_cumulative_wealth": "7ccd5d8bd4fd7e801625e8ea69674cfcc643b32bfa697099d704034e5c5b5f31",
     "figure_02_drawdowns": "384c3402aeec484e8b9e28960318d3cb7618341a5da7c49f8df0c0dacac120af",
-    "figure_03_common_ceiling_realized_frontier": "b2aa2a9be5ad2896c2c4280077b44bf1b56c69ed70884404ec3dcf997b223415",
+    "figure_03_common_ceiling_realized_frontier": "6ec66903dedf823dc081f297a80c8aaeeb60b66d969c937ba27b45099c45cf8b",
     "figure_04_requested_vs_attained_risk": "cf98836a589adaea65b91c4de11e90f082753ea616fd366c4c3cbc7909f6b0f6",
     "figure_05_predicted_vs_realized_volatility": "ddeed809e713751b1e650fee9c0ca3257d485ca0c0824de89ff5549d0fce363a",
     "figure_06_covariance_forecast_loss": "3ee8556cd2d6c2cf528edee0fdbb922e31c3442fcb47abecb45186339415d75a",
-    "figure_07_turnover_vs_net_performance": "06b1bcc9fd41eb3284f0f005aacaa5e3a329edd3988a4596b740b7d65d6479f1",
-    "figure_08_bootstrap_weight_sensitivity": "d34bf2973b9985ea7b606ad1bfaa01aaab6dd98df3d039bd3ecc82da1087237c",
+    "figure_07_turnover_vs_net_performance": "1ecdbb7fc3aaf6728842769298b261b6238df69473afab7d206083ff58ac9777",
+    "figure_08_bootstrap_weight_sensitivity": "ad15ac4d057f442d0a7bd75b97f9618b338819db4686f41a489c9f23cd7518ad",
     "figure_09_clone_distortion": "26225ed51d8ae2ed40e74620b4e44c43a362d99a57ecbc1726766decd2b076b9",
     "figure_10_clustering_conditioning": "f68228200499a60aefb16dc906d3408c6f1b7c368b302db0ab31e0e046c76c9d",
     "figure_11_clustering_turnover": "32aed7192f5452613c5b2de41fb7b9c23103e6623b87886d78fd89edccff6fcb",
-    "figure_12_regime_performance": "9db63f0c11271c024fef34ab7846ac39fba361fe8776daf2ea27c252e12d1b45",
-    "figure_13_rho_kappa_sensitivity": "b83e0bc8d675445362a3468eae9b4146f0d8581ab393d883815084d4ee2a5ec9",
+    "figure_12_regime_performance": "1146db410eb3dbb746f68c3fa6280911062f1f1ce79a6222807e7897b1490175",
+    "figure_13_rho_kappa_sensitivity": "9847e40a84e847b5325b43d59c480a22ddc50373e42a9657fbb441671671bc76",
     "headline_net_returns": "cd914b1f65cb92c547c28d0ade919ef041526c5ad5e9f289987d2c1a2b22ac6c",
     "inference_intervals": "4ff2c8f0582c4ba410e07b5ea17a25f0bb32cc7c0f13d8b32a10ac6b5d0d4af1",
     "joint_stationary_bootstrap_indices": "84e3ea5b5a5d34010f3566c4dd1819a457033a7d2e94258117fee98db656af32",
@@ -75,7 +75,7 @@
     "table_1_forecasting": "8cbd4ac4c47dd3ddb86df5c67833182f1ecf7d744eaa3c10a2b4a4c27270f4c8",
     "table_2_headline_strategies": "61882a48d84333f2ff280bfa971330cb73d4e0998b7df08f2872e676612ef4d9",
     "table_3_robustness_diagnostics": "e099c7e332f2be8ca27acd34fa5b24a622c47eb52ed74c345f5c62912f30aed9",
-    "table_4_redundancy_ablation": "bb0063398c1f098631801d9f3691d7f1639d06f7c9e980596ec1ce5993b3f8a4",
+    "table_4_redundancy_ablation": "a83d79a538774b1710b5686db10c029661acddae4bd7fe9c6e952f406609c2db",
     "target_attainment_diagnostics": "42446f7c46f62b1a4ce571db70bce651727ed52bcc69d3e26a8b6b53f5b4df5b",
     "target_attainment_performance": "6fb77df5269e35f584f8ee54631ccbdbaf3133803ea3cc9e70d84719e142a311"
   },
@@ -85,7 +85,7 @@
   },
   "counts": {
     "clone_completed": 96,
-    "clustering_completed_date_models": 620,
+    "clustering_model_date_attempts": 620,
     "direct_robustness_completed": 464,
     "dsr_candidates": 27,
     "explicit_failed_solves": 18,
@@ -346,5 +346,29 @@
   "research_status": "NESTED PSEUDO-OUT-OF-SAMPLE; NOT AN UNTOUCHED HOLDOUT",
   "result_label": "FINAL SURVIVOR-CONDITIONED PUBLIC-DATA EXPERIMENT",
   "run_timestamp_utc": "2026-09-02T17:04:04.067883+00:00",
-  "schema_version": 3
+  "schema_version": 3,
+  "figure_label_updates": {
+    "figure_03_common_ceiling_realized_frontier": {
+      "description": "Y-axis label changed from Net annualized return to Net CAGR.",
+      "original_sha256": "b2aa2a9be5ad2896c2c4280077b44bf1b56c69ed70884404ec3dcf997b223415"
+    },
+    "figure_07_turnover_vs_net_performance": {
+      "description": "Y-axis label changed from Net annualized return to Net CAGR.",
+      "original_sha256": "06b1bcc9fd41eb3284f0f005aacaa5e3a329edd3988a4596b740b7d65d6479f1"
+    },
+    "figure_08_bootstrap_weight_sensitivity": {
+      "description": "Title specifies that the bootstrap sensitivity study uses four selected dates.",
+      "original_sha256": "d34bf2973b9985ea7b606ad1bfaa01aaab6dd98df3d039bd3ecc82da1087237c"
+    }
+  },
+  "snapshot_hash_corrections": {
+    "description": "These five recorded hashes did not match the committed snapshot. The committed files are byte-identical to a fresh reproduction; their contents are unchanged.",
+    "previously_recorded_sha256": {
+      "deflated_sharpe_diagnostics": "f436a0b69714b729cddfae64fa1b7a34d510a771cfba47dc56c0df504961b6ec",
+      "all_recorded_failures": "3676af5465865500ee8eaff026124bded5738685a51d2b745c9171ec277d530c",
+      "table_4_redundancy_ablation": "bb0063398c1f098631801d9f3691d7f1639d06f7c9e980596ec1ce5993b3f8a4",
+      "figure_13_rho_kappa_sensitivity": "b83e0bc8d675445362a3468eae9b4146f0d8581ab393d883815084d4ee2a5ec9",
+      "figure_12_regime_performance": "9db63f0c11271c024fef34ab7846ac39fba361fe8776daf2ea27c252e12d1b45"
+    }
+  }
 }

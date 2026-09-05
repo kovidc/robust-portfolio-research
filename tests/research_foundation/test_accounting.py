@@ -1,21 +1,20 @@
 """Hand-calculated tests for drift and NAV accounting."""
 
-from pathlib import Path
 import sys
 import unittest
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPOSITORY_ROOT / "src"))
 
-from robust_portfolio.backtest.accounting import (  # noqa: E402
+from robust_portfolio.backtest.accounting import (
     apply_close_to_close_return,
     turnover_from_weights,
 )
-from robust_portfolio.backtest.state import PortfolioState  # noqa: E402
+from robust_portfolio.backtest.state import PortfolioState
 
 
 class TestAccounting(unittest.TestCase):

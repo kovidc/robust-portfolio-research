@@ -50,7 +50,7 @@ def _solve(problem: cp.Problem, solver_order: list[str]) -> tuple[str, str]:
             continue
         try:
             problem.solve(solver=solver, verbose=False)
-        except Exception as error:  # solver-specific numerical failures
+        except Exception as error:  # noqa: BLE001 - Try the next configured solver.
             failures.append(f"{solver}:{type(error).__name__}:{error}")
             continue
         if problem.status == cp.OPTIMAL:

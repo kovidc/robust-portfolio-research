@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import hashlib
 import json
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -17,7 +17,7 @@ class ResearchConfig:
     payload: dict[str, Any]
 
     @classmethod
-    def load(cls, path: Path | str) -> "ResearchConfig":
+    def load(cls, path: Path | str) -> ResearchConfig:
         config_path = Path(path).resolve()
         with config_path.open(encoding="utf-8") as file:
             payload = json.load(file)

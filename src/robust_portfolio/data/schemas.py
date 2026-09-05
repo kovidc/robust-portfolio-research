@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from types import MappingProxyType
-from typing import Mapping
 
 import pandas as pd
 
@@ -50,7 +50,7 @@ class ReturnPanel:
     def last_observation(self) -> pd.Timestamp | None:
         return None if self._values.empty else self._values.index[-1]
 
-    def trailing(self, observations: int) -> "ReturnPanel":
+    def trailing(self, observations: int) -> ReturnPanel:
         if observations < 1:
             raise ValueError("observations must be positive.")
         return ReturnPanel(

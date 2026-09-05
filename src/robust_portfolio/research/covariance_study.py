@@ -111,7 +111,7 @@ def run_covariance_study(
                 "gmv_oos_volatility": float(
                     concatenated.std(ddof=1) * np.sqrt(annualization_factor)
                 ),
-                "forecast_periods": int(len(group)),
+                "forecast_periods": len(group),
             }
         )
     return pd.DataFrame(summaries).set_index("estimator"), periods

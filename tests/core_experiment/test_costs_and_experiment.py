@@ -2,21 +2,20 @@
 
 import json
 import os
-from pathlib import Path
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 import pandas as pd
-
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/robust_portfolio_test_mpl")
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPOSITORY_ROOT / "src"))
 
-from robust_portfolio.data import FrozenCsvReturnProvider  # noqa: E402
-from robust_portfolio.research.core_experiment import run_core_experiment  # noqa: E402
-from robust_portfolio.research.simulation import simulate_targets  # noqa: E402
+from robust_portfolio.data import FrozenCsvReturnProvider
+from robust_portfolio.research.core_experiment import run_core_experiment
+from robust_portfolio.research.simulation import simulate_targets
 
 
 class TestCostScenarios(unittest.TestCase):

@@ -1,25 +1,26 @@
 """Manifest, labeling, isolation, and reproducibility tests."""
 
 import json
-from pathlib import Path
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 import pandas as pd
-
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPOSITORY_ROOT / "src"))
 
-from robust_portfolio.backtest import BacktestEngine  # noqa: E402
-from robust_portfolio.config import ResearchConfig  # noqa: E402
-from robust_portfolio.data import (  # noqa: E402
+from robust_portfolio.backtest import BacktestEngine
+from robust_portfolio.config import ResearchConfig
+from robust_portfolio.data import (
     FrozenCsvReturnProvider,
     SurvivorPanelUniverseBuilder,
     UniverseRules,
 )
-from robust_portfolio.reporting.artifacts import validate_artifact_directory  # noqa: E402
+from robust_portfolio.reporting.artifacts import (
+    validate_artifact_directory,
+)
 
 
 def _setup_fixture(root: Path):
@@ -129,21 +130,17 @@ class TestManifests(unittest.TestCase):
             self.assertEqual(first.manifest["configuration"], second.manifest["configuration"])
             self.assertEqual(first.manifest["inputs"], second.manifest["inputs"])
 
-    def test_research_artifacts_cannot_overwrite_legacy_or_source_paths(self):
-        with self.assertRaises(ValueError):
-            validate_artifact_directory(REPOSITORY_ROOT / "outputs", REPOSITORY_ROOT)
-        with self.assertRaises(ValueError):
-            validate_artifact_directory(
-                REPOSITORY_ROOT / "artifacts" / "legacy_cs361" / "reproduced",
-                REPOSITORY_ROOT,
-            )
+    def test_research_artifacts_cannot_overwrite_source_or_results(self):
+        for directory in ("data", "results", "src"):
+            with self.subTest(directory=directory), self.assertRaises(ValueError):
+                validate_artifact_directory(REPOSITORY_ROOT / directory, REPOSITORY_ROOT)
         allowed = validate_artifact_directory(
-            REPOSITORY_ROOT / "artifacts" / "accounting_diagnostic" / "run",
+            REPOSITORY_ROOT / "artifacts" / "accounting" / "run",
             REPOSITORY_ROOT,
         )
         self.assertEqual(
             allowed,
-            (REPOSITORY_ROOT / "artifacts" / "accounting_diagnostic" / "run").resolve(),
+            (REPOSITORY_ROOT / "artifacts" / "accounting" / "run").resolve(),
         )
 
 

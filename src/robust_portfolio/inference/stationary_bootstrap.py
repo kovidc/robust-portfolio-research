@@ -56,7 +56,7 @@ def bootstrap_headline_statistics(
     """Bootstrap all strategy columns with the same time indices.
 
     Returns metric intervals, paired strategy-minus-comparator intervals, and
-    the actual shared index matrix so pairing is auditable.
+    the shared index matrix used to pair the samples.
     """
     if returns.empty or returns.isna().any().any():
         raise ValueError("Inference requires a complete joint strategy-return panel.")

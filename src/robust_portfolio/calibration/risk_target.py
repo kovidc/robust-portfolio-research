@@ -48,7 +48,7 @@ def calibrate_risk_aversion(
 
     The attainable interval is bounded by constrained GMV risk and the risk of
     the optimizer's deterministic zero-gamma solution. A request outside that
-    interval is data, not an invitation to use negative risk aversion.
+    interval is reported as unattainable with nonnegative risk aversion.
     """
     if target_volatility <= 0.0 or volatility_tolerance <= 0.0:
         raise ValueError("Target and tolerance must be positive.")

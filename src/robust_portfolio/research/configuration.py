@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import hashlib
 import json
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -15,7 +15,7 @@ class CoreExperimentConfig:
     payload: dict[str, Any]
 
     @classmethod
-    def load(cls, path: Path | str) -> "CoreExperimentConfig":
+    def load(cls, path: Path | str) -> CoreExperimentConfig:
         resolved = Path(path).resolve()
         with resolved.open(encoding="utf-8") as stream:
             payload = json.load(stream)
@@ -38,9 +38,9 @@ class CoreExperimentConfig:
         if payload["data"]["universe_mode"] != "SURVIVOR_PANEL":
             raise ValueError("The public-data core experiment config must declare SURVIVOR_PANEL.")
         if payload["data"]["survivorship_bias_free"]:
-            raise ValueError("The frozen public dataset cannot support a survivorship-free claim.")
+            raise ValueError("The stored ETF panel is survivor-conditioned.")
         if payload["clock"]["execution_convention"] != "CLOSE_T_AFTER_RETURN":
-            raise ValueError("The core experiment must retain the research foundation close-after-return convention.")
+            raise ValueError("The core experiment must retain the close-after-return convention.")
         if int(payload["walkforward"]["minimum_prior_inner_folds"]) < 4:
             raise ValueError("The core experiment requires at least four prior inner folds.")
         cap = float(payload["constraints"]["maximum_weight"])

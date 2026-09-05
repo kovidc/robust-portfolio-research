@@ -1,6 +1,6 @@
-from pathlib import Path
 import sys
 import unittest
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -9,7 +9,8 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 from robust_portfolio.inference import (
-    bootstrap_headline_statistics, deflated_sharpe_probability,
+    bootstrap_headline_statistics,
+    deflated_sharpe_probability,
     stationary_bootstrap_indices,
 )
 from robust_portfolio.research.regimes import classify_regimes

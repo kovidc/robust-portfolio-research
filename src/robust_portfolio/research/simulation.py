@@ -1,4 +1,4 @@
-"""Core experiment simulation using the research foundation accounting primitives."""
+"""Portfolio simulation with drifted holdings and self-financing execution."""
 
 from __future__ import annotations
 

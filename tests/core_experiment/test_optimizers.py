@@ -1,17 +1,16 @@
 """Core experiment benchmark feasibility and robust-counterpart tests."""
 
-from pathlib import Path
 import sys
 import unittest
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPOSITORY_ROOT / "src"))
 
-from robust_portfolio.optimizers import (  # noqa: E402
+from robust_portfolio.optimizers import (
     OptimizationFailure,
     asset_class_equal_weight,
     box_worst_case_mean,
@@ -22,12 +21,11 @@ from robust_portfolio.optimizers import (  # noqa: E402
     risk_parity,
     solve_target_risk,
 )
-from robust_portfolio.optimizers.robust import (  # noqa: E402
+from robust_portfolio.optimizers.robust import (
     explicit_box_worst_case_mean,
     explicit_diagonal_worst_case_variance,
     explicit_ellipsoid_worst_case_mean,
 )
-
 
 SOLVERS = ["CLARABEL", "SCS"]
 

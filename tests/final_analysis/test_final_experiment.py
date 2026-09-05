@@ -1,7 +1,7 @@
-from pathlib import Path
 import json
 import sys
 import unittest
+from pathlib import Path
 
 import pandas as pd
 
@@ -61,13 +61,20 @@ class TestFinalExperiment(unittest.TestCase):
         absent = summary[summary["regime"] == "weak/cooling"]
         self.assertEqual(set(absent["status"]), {"NO_OBSERVATIONS"})
 
-    def test_manifest_claims_and_hashes_are_consistent(self):
+    def test_manifest_metadata_and_hashes_are_consistent(self):
         manifest = json.loads((self.output / "run_manifest.json").read_text())
         self.assertEqual(manifest["configuration"]["canonical_sha256"], self.config.sha256)
         self.assertIn("not survivorship-bias-free", manifest["protocol"]["limitations"][0])
         self.assertEqual(manifest["counts"]["inference_replications"], 2000)
         self.assertEqual(manifest["counts"]["dsr_candidates"], 27)
+        clustering = pd.read_csv(self.output / "clustering_date_diagnostics.csv")
+        self.assertEqual(manifest["counts"]["clustering_model_date_attempts"], len(clustering))
+        self.assertEqual(int((clustering["status"] == "FAILED_EXPLICITLY").sum()), 14)
         self.assertEqual(len(manifest["core_source"]["artifact_sha256"]), 19)
+        core_manifest = json.loads(
+            (Path(manifest["core_source"]["artifact_directory"]) / "run_manifest.json").read_text()
+        )
+        self.assertEqual(manifest["core_source"]["commit"], core_manifest["git"]["commit"])
         for name, expected in manifest["artifact_sha256"].items():
             self.assertEqual(sha256_file(Path(manifest["artifact_locations"][name])), expected)
 
@@ -92,7 +99,7 @@ class TestFinalExperiment(unittest.TestCase):
         self.assertEqual(payload["sensitivity"]["kappa_multipliers"], [0.0, 0.5, 1.0, 1.5])
         self.assertEqual(payload["sensitivity"]["maximum_weights"], [0.05, 0.10, 0.20])
 
-    def test_final_claims_match_generated_artifacts(self):
+    def test_report_values_match_generated_artifacts(self):
         headline = pd.read_csv(self.output / "table_2_headline_strategies.csv").set_index("strategy")
         expected = {
             "etf_equal_weight": (0.091646, 0.143193, 0.684461),

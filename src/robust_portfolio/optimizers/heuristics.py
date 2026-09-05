@@ -58,7 +58,7 @@ def asset_class_equal_weight(
         raise ValueError(f"Missing asset-class labels: {classes.index[classes.isna()].tolist()}")
     class_count = int(classes.nunique())
     weights = pd.Series(0.0, index=index)
-    for _, members in classes.groupby(classes).groups.items():
+    for members in classes.groupby(classes).groups.values():
         weights.loc[list(members)] = 1.0 / (class_count * len(members))
     if float(weights.max()) > maximum_weight + 1e-12:
         raise ValueError("Asset-class equal weight violates the maximum-weight constraint.")

@@ -1,4 +1,4 @@
-"""Persist complete backtest state without touching legacy evidence."""
+"""Persist daily holdings, weights, trades, costs, and run metadata."""
 
 from __future__ import annotations
 
@@ -15,11 +15,8 @@ def validate_artifact_directory(artifact_dir: Path | str, repository_root: Path)
         raise ValueError("The repository root cannot be an artifact directory.")
     if repository in output.parents:
         artifacts_root = (repository / "artifacts").resolve()
-        legacy_root = (artifacts_root / "legacy_cs361").resolve()
         if artifacts_root not in output.parents:
             raise ValueError("Repository-local research outputs must stay under artifacts/.")
-        if output == legacy_root or legacy_root in output.parents:
-            raise ValueError("Research outputs may not overwrite the LEGACY artifact namespace.")
     return output
 
 

@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
+import json
+import platform
 from dataclasses import dataclass
 from datetime import datetime, timezone
-import json
 from pathlib import Path
-import platform
 
 import cvxpy as cp
 import numpy as np
@@ -16,20 +16,26 @@ from robust_portfolio.calibration import calibrate_risk_aversion
 from robust_portfolio.data import FrozenCsvReturnProvider
 from robust_portfolio.data.providers import sha256_file
 from robust_portfolio.data.schemas import ReturnPanel
-from robust_portfolio.estimators import calibrate_uncertainty, estimate_covariance, estimate_mean
+from robust_portfolio.estimators import (
+    calibrate_uncertainty,
+    estimate_covariance,
+    estimate_mean,
+)
 from robust_portfolio.estimators.covariance import iewma_covariance, nearest_psd
 from robust_portfolio.estimators.uncertainty import circular_block_bootstrap_indices
-from robust_portfolio.inference import bootstrap_headline_statistics, deflated_sharpe_probability
+from robust_portfolio.inference import (
+    bootstrap_headline_statistics,
+    deflated_sharpe_probability,
+)
 from robust_portfolio.optimizers import (
-    OptimizationFailure,
     diagonal_robust_covariance,
     global_minimum_variance,
     solve_target_risk,
 )
-from robust_portfolio.reporting.manifests import dependency_versions, git_state
-from robust_portfolio.reporting.metrics import maximum_drawdown, scenario_metrics
 from robust_portfolio.reporting.core_outputs import prepare_output_directory, write_json
 from robust_portfolio.reporting.final_outputs import create_final_figures
+from robust_portfolio.reporting.manifests import dependency_versions, git_state
+from robust_portfolio.reporting.metrics import maximum_drawdown, scenario_metrics
 
 from .clustering import (
     cluster_medoids,
@@ -37,6 +43,7 @@ from .clustering import (
     covariance_spectrum,
     hierarchical_clusters,
 )
+from .configuration import CoreExperimentConfig
 from .final_analysis_configuration import FinalAnalysisConfig
 from .regimes import classify_regimes
 from .robustness import (
@@ -93,9 +100,9 @@ def _validate_core(config: FinalAnalysisConfig, root: Path) -> tuple[Path, dict]
     expected = config.section("experiment")["core_config_sha256"]
     if manifest["configuration"]["canonical_sha256"] != expected:
         raise ValueError("Core experiment artifact configuration hash does not match final analysis.")
-    expected_commit = config.section("experiment")["core_commit"]
-    if manifest.get("git", {}).get("commit") != expected_commit:
-        raise ValueError("Core experiment manifest does not identify the configured core experiment commit.")
+    current_core = CoreExperimentConfig.load(config.repository_path(root, "core_config"))
+    if current_core.sha256 != expected:
+        raise ValueError("Core experiment artifacts do not match the current core configuration.")
     for record in manifest["inputs"].values():
         path = Path(record["path"])
         if sha256_file(path) != record["sha256"]:
@@ -283,7 +290,7 @@ def _risk_diagnostics(
                     }
                 )
                 if solution is not None:
-                    name = f"{model}_target_attainment_{int(round(target*100)):02d}pct"
+                    name = f"{model}_target_attainment_{round(target*100):02d}pct"
                     attainment_targets.setdefault(name, {})[date] = solution.weights
 
     def parse_model(name: str) -> str:
@@ -330,7 +337,7 @@ def _risk_diagnostics(
                     {
                         "comparison_type": "COMMON EX-ANTE RISK CEILING",
                         "decision_date": date,
-                        "strategy": f"{model}_risk_{int(round(target * 100)):02d}pct",
+                        "strategy": f"{model}_risk_{round(target * 100):02d}pct",
                         "model": model,
                         "requested_volatility": target,
                         "attained_predicted_decision_volatility": np.nan,
@@ -427,7 +434,7 @@ def _direct_robustness(
                             - _robust_return(perturbed, model, baseline),
                         }
                     )
-                except Exception as error:
+                except Exception as error:  # noqa: BLE001 - Retain failed solves in the diagnostics.
                     failures.append(
                         {
                             "experiment": "training_block_bootstrap",
@@ -468,7 +475,7 @@ def _direct_robustness(
                             ) - _robust_return(shocked_inputs, model, baseline),
                         }
                     )
-                except Exception as error:
+                except Exception as error:  # noqa: BLE001 - Retain failed solves in the diagnostics.
                     failures.append(
                         {"experiment": "mean_standard_error_shock", "decision_date": date,
                          "model": model, "perturbation": label,
@@ -515,7 +522,7 @@ def _direct_robustness(
                             - _robust_return(inputs, model, baseline),
                         }
                     )
-                except Exception as error:
+                except Exception as error:  # noqa: BLE001 - Retain failed solves in the diagnostics.
                     failures.append(
                         {"experiment": "psd_covariance_shock", "decision_date": date,
                          "model": model, "perturbation": label,
@@ -605,7 +612,7 @@ def _clone_experiment(
                              "economic_one_way_turnover_implication": 0.5 * diagnostic["economic_exposure_l1_change"],
                              "predicted_common_base_volatility_change": candidate_risk - baseline_risk}
                         )
-                    except Exception as error_value:
+                    except Exception as error_value:  # noqa: BLE001 - Retain failed solves in the diagnostics.
                         failures.append(
                             {"experiment": "synthetic_clone", "decision_date": date,
                              "model": model, "source_asset": source,
@@ -700,7 +707,7 @@ def _cluster_experiment(
                             ), 0.0))),
                         }
                     )
-                except Exception as error:
+                except Exception as error:  # noqa: BLE001 - Retain failed solves in the diagnostics.
                     date_records.append(
                         {
                             "decision_date": date, "threshold": threshold, "model": model,
@@ -1006,7 +1013,7 @@ def _sensitivity(
                          "predicted_common_base_volatility": result.common_base_volatility,
                          "robust_return": _robust_return(altered, "box_diagonal", result.weights)}
                     )
-                except Exception as error:
+                except Exception as error:  # noqa: BLE001 - Retain failed solves in the diagnostics.
                     failures.append(
                         {"experiment": "rho_kappa_sensitivity", "decision_date": date,
                          "model": "box_diagonal", "rho_multiplier": rho_multiplier,
@@ -1029,7 +1036,7 @@ def _sensitivity(
                          "predicted_common_base_volatility": result.common_base_volatility,
                          "robust_return": _robust_return(base, model, result.weights)}
                     )
-                except Exception as error:
+                except Exception as error:  # noqa: BLE001 - Retain failed solves in the diagnostics.
                     failures.append(
                         {"experiment": "maximum_weight_sensitivity", "decision_date": date,
                          "model": model, "maximum_weight": maximum_weight,
@@ -1357,7 +1364,7 @@ def run_final_analysis(
         "git": git_state(root),
         "configuration": {"path": str(config.path), "canonical_sha256": config.sha256},
         "core_source": {
-            "commit": config.section("experiment")["core_commit"],
+            "commit": core_manifest["git"]["commit"],
             "configuration_sha256": core_manifest["configuration"]["canonical_sha256"],
             "artifact_directory": str(core_dir),
             "manifest_sha256": sha256_file(core_dir / "run_manifest.json"),
@@ -1387,7 +1394,7 @@ def run_final_analysis(
             "outer_decisions": len(solver_dates),
             "direct_robustness_completed": len(direct),
             "clone_completed": len(clones),
-            "clustering_completed_date_models": len(cluster_dates),
+            "clustering_model_date_attempts": len(cluster_dates),
             "explicit_failed_solves": len(failures),
             "inference_replications": int(config.section("inference")["replications"]),
             "dsr_candidates": int(dsr["candidate_count"].iloc[0]),

@@ -7,7 +7,6 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 
-
 ACCOUNTING_TOLERANCE = 1e-12
 
 
@@ -28,7 +27,7 @@ class PortfolioState:
         if not np.isfinite(holdings.to_numpy()).all():
             raise ValueError("Portfolio holdings must be finite.")
         if float(holdings.min()) < -ACCOUNTING_TOLERANCE:
-            raise ValueError("Research foundation portfolio holdings cannot be short.")
+            raise ValueError("Portfolio holdings cannot be short.")
         if not np.isfinite(self.nav) or self.nav < -ACCOUNTING_TOLERANCE:
             raise ValueError("NAV must be finite and nonnegative.")
         if not np.isfinite(self.cash) or self.cash < -ACCOUNTING_TOLERANCE:
@@ -45,7 +44,7 @@ class PortfolioState:
         object.__setattr__(self, "cash", max(float(self.cash), 0.0))
 
     @classmethod
-    def all_cash(cls, timestamp, nav: float, assets=()) -> "PortfolioState":
+    def all_cash(cls, timestamp, nav: float, assets=()) -> PortfolioState:
         return cls(
             timestamp=pd.Timestamp(timestamp),
             nav=float(nav),
@@ -63,7 +62,7 @@ class PortfolioState:
     def cash_weight(self) -> float:
         return 0.0 if self.nav <= ACCOUNTING_TOLERANCE else self.cash / self.nav
 
-    def reindex(self, assets) -> "PortfolioState":
+    def reindex(self, assets) -> PortfolioState:
         return PortfolioState(
             timestamp=self.timestamp,
             nav=self.nav,

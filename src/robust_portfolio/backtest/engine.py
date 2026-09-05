@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Callable, Mapping
 
 import numpy as np
 import pandas as pd
@@ -229,7 +229,10 @@ class BacktestEngine:
         )
 
         from robust_portfolio.reporting.artifacts import write_backtest_artifacts
-        from robust_portfolio.reporting.manifests import build_run_manifest, write_manifest
+        from robust_portfolio.reporting.manifests import (
+            build_run_manifest,
+            write_manifest,
+        )
 
         artifact_paths = write_backtest_artifacts(
             result,

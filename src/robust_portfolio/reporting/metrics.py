@@ -10,6 +10,7 @@ def maximum_drawdown(wealth) -> float:
 
 
 def annualized_cagr(returns, annualization_factor: int) -> float:
+    """Compound daily returns and express growth per annualization_factor rows."""
     growth = float((1.0 + returns).prod())
     return growth ** (annualization_factor / len(returns)) - 1.0
 
@@ -37,6 +38,7 @@ def scenario_metrics(path, targets, *, annualization_factor: int) -> dict:
         "net_final_wealth": float(path.daily["net_wealth"].iloc[-1]),
         "gross_cumulative_return": float(path.daily["gross_wealth"].iloc[-1] - 1.0),
         "net_cumulative_return": float(path.daily["net_wealth"].iloc[-1] - 1.0),
+        # Keep CSV field names stable; both annualized-return fields contain CAGR.
         "gross_annualized_return": annualized_cagr(gross_returns, annualization_factor),
         "net_annualized_return": annualized_cagr(net_returns, annualization_factor),
         "realized_volatility": net_volatility,

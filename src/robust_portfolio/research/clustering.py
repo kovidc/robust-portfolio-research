@@ -66,5 +66,5 @@ def covariance_spectrum(covariance: pd.DataFrame) -> dict[str, float]:
         "effective_rank": effective_rank,
         "minimum_eigenvalue": float(eigenvalues.min()),
         "second_smallest_eigenvalue": float(np.sort(eigenvalues)[1]) if len(eigenvalues) > 1 else float(eigenvalues[0]),
-        "positive_eigenvalue_count": int(len(positive)),
+        "positive_eigenvalue_count": len(positive),
     }

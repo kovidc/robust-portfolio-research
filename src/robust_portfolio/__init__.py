@@ -1,4 +1,4 @@
-"""Research-grade portfolio infrastructure kept separate from the legacy code."""
+"""Portfolio estimation, optimization, and self-financing backtesting."""
 
 from .config import ResearchConfig
 

@@ -43,7 +43,7 @@ def create_final_figures(output: Path) -> dict[str, str]:
     for robust_set, group in ceiling.groupby("robust_set"):
         ordered = group.sort_values("target_risk")
         axis.plot(ordered["realized_volatility"], ordered["net_annualized_return"], marker="o", label=robust_set)
-    axis.set(title="Common ex-ante risk ceiling: realized outcomes", xlabel="Realized annualized volatility", ylabel="Net annualized return")
+    axis.set(title="Common ex-ante risk ceiling: realized outcomes", xlabel="Realized annualized volatility", ylabel="Net CAGR")
     axis.legend(fontsize=8)
     paths["figure_03_common_ceiling_realized_frontier"] = _save(figure, output / "figure_03_common_ceiling_realized_frontier.png")
 
@@ -82,7 +82,7 @@ def create_final_figures(output: Path) -> dict[str, str]:
     axis.scatter(headline["recurring_one_way_turnover"], headline["net_annualized_return"], s=40)
     for _, row in headline.iterrows():
         axis.annotate(row["strategy"], (row["recurring_one_way_turnover"], row["net_annualized_return"]), fontsize=6)
-    axis.set(title="Turnover versus net performance — 5 bp scenario", xlabel="Average recurring one-way turnover", ylabel="Net annualized return")
+    axis.set(title="Turnover versus net performance — 5 bp scenario", xlabel="Average recurring one-way turnover", ylabel="Net CAGR")
     paths["figure_07_turnover_vs_net_performance"] = _save(figure, output / "figure_07_turnover_vs_net_performance.png")
 
     direct = pd.read_csv(output / "direct_robustness_observations.csv")
@@ -91,7 +91,7 @@ def create_final_figures(output: Path) -> dict[str, str]:
     groups = [group["l1_weight_change"].dropna().to_numpy() for _, group in bootstrap.groupby("model")]
     labels = [name for name, _ in bootstrap.groupby("model")]
     axis.boxplot(groups, tick_labels=labels, showfliers=False)
-    axis.set(title="Dependence-aware bootstrap weight sensitivity", ylabel=r"$\|w_b-w_0\|_1$")
+    axis.set(title="Bootstrap weight sensitivity — four selected dates", ylabel=r"$\|w_b-w_0\|_1$")
     paths["figure_08_bootstrap_weight_sensitivity"] = _save(figure, output / "figure_08_bootstrap_weight_sensitivity.png")
 
     clones = pd.read_csv(output / "clone_diagnostics.csv")

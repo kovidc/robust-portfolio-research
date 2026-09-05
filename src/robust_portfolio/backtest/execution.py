@@ -49,7 +49,7 @@ def _validated_target(
     if not np.isfinite(target.to_numpy()).all():
         raise ValueError("Target weights must be finite.")
     if float(target.min()) < -ACCOUNTING_TOLERANCE:
-        raise ValueError("Research foundation target weights cannot be negative.")
+        raise ValueError("Target weights cannot be negative.")
     target = target.clip(lower=0.0)
     if float(target.sum()) > 1.0 + ACCOUNTING_TOLERANCE:
         raise ValueError("Risky-asset target weights cannot sum above one.")

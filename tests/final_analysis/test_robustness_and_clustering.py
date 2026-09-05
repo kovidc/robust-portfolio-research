@@ -1,6 +1,6 @@
-from pathlib import Path
 import sys
 import unittest
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -9,10 +9,15 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 from robust_portfolio.research.clustering import (
-    cluster_medoids, correlation_distance, covariance_spectrum, hierarchical_clusters,
+    cluster_medoids,
+    correlation_distance,
+    covariance_spectrum,
+    hierarchical_clusters,
 )
 from robust_portfolio.research.robustness import (
-    allocation_diagnostics, clone_distortions, psd_covariance_perturbations,
+    allocation_diagnostics,
+    clone_distortions,
+    psd_covariance_perturbations,
 )
 
 

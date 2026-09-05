@@ -1,17 +1,16 @@
 """Automated as-of and universe-eligibility tests."""
 
-from pathlib import Path
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 import pandas as pd
-
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPOSITORY_ROOT / "src"))
 
-from robust_portfolio.data import (  # noqa: E402
+from robust_portfolio.data import (
     FrozenCsvReturnProvider,
     PointInTimeDataUnavailable,
     PointInTimeUniverseBuilder,

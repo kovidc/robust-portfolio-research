@@ -1,18 +1,17 @@
 """Execution, timing, cost, and state-continuity tests."""
 
 import json
-from pathlib import Path
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 import pandas as pd
-
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPOSITORY_ROOT / "src"))
 
-from robust_portfolio.backtest import (  # noqa: E402
+from robust_portfolio.backtest import (
     BacktestEngine,
     LinearCostModel,
     PortfolioState,
@@ -20,8 +19,8 @@ from robust_portfolio.backtest import (  # noqa: E402
     cost_model_from_config,
     execute_target,
 )
-from robust_portfolio.config import ResearchConfig  # noqa: E402
-from robust_portfolio.data import (  # noqa: E402
+from robust_portfolio.config import ResearchConfig
+from robust_portfolio.data import (
     FrozenCsvReturnProvider,
     SurvivorPanelUniverseBuilder,
     UniverseRules,

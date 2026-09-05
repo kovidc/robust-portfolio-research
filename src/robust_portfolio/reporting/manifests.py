@@ -1,14 +1,14 @@
-"""Reproducible run manifests with code, config, data, and environment provenance."""
+"""Run manifests recording code, configuration, data hashes, and environment."""
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import importlib.metadata
 import json
-from pathlib import Path
 import platform
 import subprocess
-from typing import Mapping
+from collections.abc import Mapping
+from datetime import datetime, timezone
+from pathlib import Path
 
 from robust_portfolio.config import ResearchConfig
 from robust_portfolio.data.providers import sha256_file

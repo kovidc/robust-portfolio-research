@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import json
-from pathlib import Path
 import platform
+from datetime import datetime, timezone
+from pathlib import Path
 
 import cvxpy as cp
 import numpy as np
@@ -33,13 +33,13 @@ from robust_portfolio.optimizers import (
     risk_parity,
     solve_target_risk,
 )
-from robust_portfolio.reporting.manifests import dependency_versions, git_state
-from robust_portfolio.reporting.metrics import scenario_metrics
 from robust_portfolio.reporting.core_outputs import (
     create_core_figures,
     prepare_output_directory,
     write_json,
 )
+from robust_portfolio.reporting.manifests import dependency_versions, git_state
+from robust_portfolio.reporting.metrics import scenario_metrics
 
 from .configuration import CoreExperimentConfig
 from .covariance_study import run_covariance_study
@@ -90,7 +90,7 @@ def _strategy_metadata(ablation, mean, covariance, robust_set, target_risk):
 
 
 def _risk_name(prefix: str, target: float) -> str:
-    return f"{prefix}_risk_{int(round(target * 100)):02d}pct"
+    return f"{prefix}_risk_{round(target * 100):02d}pct"
 
 
 def run_core_experiment(

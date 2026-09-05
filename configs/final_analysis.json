@@ -4,11 +4,10 @@
     "name": "final_analysis_research_experiment",
     "result_label": "FINAL SURVIVOR-CONDITIONED PUBLIC-DATA EXPERIMENT",
     "research_status": "NESTED PSEUDO-OUT-OF-SAMPLE; NOT AN UNTOUCHED HOLDOUT",
-    "core_commit": "b446d70fff2cca23947b790115d5610fcc4382d9",
-    "core_config_sha256": "d77e27a202a47c5bcc1e0100581ea668c22cb4dc9d5a7ab542f75ac35345af39"
+    "core_config_sha256": "f64614fe6e8309f30419276196eba4fb41e45bb4398e552ca4f834b1dfd44913"
   },
   "inputs": {
-    "core_artifact_directory": "artifacts/core_experiment/d77e27a202a4",
+    "core_artifact_directory": "artifacts/core_experiment/f64614fe6e83",
     "core_config": "configs/core_experiment.json",
     "returns_path": "data/returns_clean.csv",
     "rebalance_dates_path": "data/quarterly_rebalance_dates.csv",

@@ -70,7 +70,7 @@ def create_core_figures(
             group["realized_volatility"], group["net_annualized_return"],
             marker="o", label=model,
         )
-    axis.set(xlabel="Realized annualized volatility", ylabel="Net annualized return", title="Risk-matched realized frontier")
+    axis.set(xlabel="Realized annualized volatility", ylabel="Net CAGR", title="Risk-matched realized frontier")
     axis.legend(fontsize=8)
     path = output / "figure_2_realized_risk_return.png"
     _save(figure, path)
